@@ -17,7 +17,7 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
  
     <context:annotation-config />
-    <context:component-scan base-package="fr.iut.lism" />
+    <context:component-scan base-package="fr.iut" />
  
  	<bean id="coursDaoImpl" class="fr.iut.lism.dao.implementation.CoursDaoImpl">
  	</bean>
@@ -46,7 +46,6 @@
         p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
         p:password="${jdbc.password}" />
  
- 
     <bean id="sessionFactory"
         class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="annotatedClasses">
@@ -55,6 +54,7 @@
 				<value>fr.iut.lism.dao.implementation.CoursDaoImpl</value>
 			</list>
 		</property>
+		<property name="packagesToScan" value="fr.iut.lism"/>
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation">
             <value>classpath:src/main/resources/hibernate.cfg.xml</value>

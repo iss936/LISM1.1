@@ -14,7 +14,6 @@ import fr.iut.lism.service.interfaces.CoursService;
 @Service
 public class CoursServiceImpl implements CoursService{
 	
-	@Autowired
 	private CoursDao coursDao;
 
 	@Transactional
