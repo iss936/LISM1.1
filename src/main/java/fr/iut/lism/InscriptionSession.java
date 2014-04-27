@@ -8,66 +8,40 @@ public class InscriptionSession implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int idEtudiant;
-	private int idCoursSession;
+	private Etudiant etudiant;
+	private CoursSession coursSession;
 	
-	public InscriptionSession(int idEtudiant, int idCoursSession) {
-		this.idEtudiant = idEtudiant;
-		this.idCoursSession = idCoursSession;
+	public InscriptionSession(Etudiant etudiant, CoursSession coursSession) {
+		this.setEtudiant(etudiant);
+		this.setCoursSession(coursSession);
 	}
 	public InscriptionSession()
 	{
 		
 	}
 	
-	public int getIdEtudiant() {
-		return idEtudiant;
-	}
-	
-	public void setIdEtudiant(int idEtudiant) {
-		this.idEtudiant = idEtudiant;
-	}
-	
-	public int getIdCoursSession() {
-		return idCoursSession;
-	}
-	
-	
-	public void setIdCoursSession(int idCoursSession) {
-		this.idCoursSession = idCoursSession;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * @return the etudiant
 	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + idCoursSession;
-		result = prime * result + idEtudiant;
-		return result;
+	public Etudiant getEtudiant() {
+		return etudiant;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * @param etudiant the etudiant to set
 	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		InscriptionSession other = (InscriptionSession) obj;
-		if (idCoursSession != other.idCoursSession)
-			return false;
-		if (idEtudiant != other.idEtudiant)
-			return false;
-		return true;
+	public void setEtudiant(Etudiant etudiant) {
+		this.etudiant = etudiant;
 	}
-	
-
-	
-	
+	/**
+	 * @return the coursSession
+	 */
+	public CoursSession getCoursSession() {
+		return coursSession;
+	}
+	/**
+	 * @param coursSession the coursSession to set
+	 */
+	public void setCoursSession(CoursSession coursSession) {
+		this.coursSession = coursSession;
+	}
 }

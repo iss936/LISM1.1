@@ -1,22 +1,22 @@
 package fr.iut.lism;
 
 import java.sql.Date;
+import java.util.Set;
 
 public class EvalSession {
 
 	private int idEvalSession;
 	private Date dateDebut;
 	private Date dateFin;
-	private int idCoursSession;
+	private CoursSession coursSession;
+	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
 	
-	
-	public EvalSession(int idEvalSession, Date dateDebut, Date dateFin,
-			int idCoursSession) {
+	public EvalSession(int idEvalSession, Date dateDebut, Date dateFin, CoursSession coursSession) {
 		super();
 		this.idEvalSession = idEvalSession;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.idCoursSession = idCoursSession;
+		this.coursSession = coursSession;
 	}
 	
 	public EvalSession() {
@@ -60,16 +60,30 @@ public class EvalSession {
 		this.dateFin = dateFin;
 	}
 	/**
-	 * @return the idCoursSession
+	 * @return the coursSession
 	 */
-	public int getIdCoursSession() {
-		return idCoursSession;
+	public CoursSession getCoursSession() {
+		return coursSession;
 	}
 	/**
-	 * @param idCoursSession the idCoursSession to set
+	 * @param coursSession the coursSession to set
 	 */
-	public void setIdCoursSession(int idCoursSession) {
-		this.idCoursSession = idCoursSession;
+	public void setCoursSession(CoursSession coursSession) {
+		this.coursSession = coursSession;
+	}
+
+	/**
+	 * @return the lesEtudiantCoursEval
+	 */
+	public Set<EtudiantCoursEval> getLesEtudiantCoursEval() {
+		return lesEtudiantCoursEval;
+	}
+
+	/**
+	 * @param lesEtudiantCoursEval the lesEtudiantCoursEval to set
+	 */
+	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
+		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
 	}
 	
 	

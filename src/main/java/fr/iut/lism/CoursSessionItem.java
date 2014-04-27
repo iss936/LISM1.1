@@ -3,31 +3,24 @@ package fr.iut.lism;
 public class CoursSessionItem {
 
 	private int idCoursSessionItem;
-	private int idEnseignant;
-	private int idSalle;
-	private int idCoursSession;
+	private Enseignant enseignant;
+	private Salle salle;
+	private CoursSession coursSession;
 	private String descriptionDetail;
 	
-	public CoursSessionItem(int idCoursSessionItem, int idEnseignant, int idSalle, int idCoursSession, String descriptionDetail) {
+	public CoursSessionItem(int idCoursSessionItem, Enseignant enseignant, Salle salle, CoursSession coursSession, String descriptionDetail) {
 		this.setIdCoursSessionItem(idCoursSessionItem);
-		this.setIdEnseignant(idEnseignant);
-		this.setIdSalle(idSalle);
-		this.setIdSalle(idSalle);
-		this.setIdCoursSession(idCoursSession);
-		
+		this.setEnseignant(enseignant);
+		this.setSalle(salle);
+		this.setCoursSession(coursSession);
+		this.setDescriptionDetail(descriptionDetail);
 	}
 
 	public CoursSessionItem() {
 		
 	}
 	
-	public int getIdCoursSession() {
-		return idCoursSession;
-	}
 
-	public void setIdCoursSession(int idCoursSession) {
-		this.idCoursSession = idCoursSession;
-	}
 
 	public String getDescriptionDetail() {
 		return descriptionDetail;
@@ -52,32 +45,45 @@ public class CoursSessionItem {
 	}
 
 	/**
-	 * @return the idEnseignant
+	 * @return the enseignant
 	 */
-	public int getIdEnseignant() {
-		return idEnseignant;
+	public Enseignant getEnseignant() {
+		return enseignant;
 	}
 
 	/**
-	 * @param idEnseignant the idEnseignant to set
+	 * @param enseignant the enseignant to set
 	 */
-	public void setIdEnseignant(int idEnseignant) {
-		this.idEnseignant = idEnseignant;
+	public void setEnseignant(Enseignant enseignant) {
+		this.enseignant = enseignant;
 	}
 
 	/**
-	 * @return the idSalle
+	 * @return the salle
 	 */
-	public int getIdSalle() {
-		return idSalle;
+	public Salle getSalle() {
+		return salle;
 	}
 
 	/**
-	 * @param idSalle the idSalle to set
+	 * @param salle the salle to set
 	 */
-	public void setIdSalle(int idSalle) {
-		this.idSalle = idSalle;
+	public void setSalle(Salle salle) {
+		this.salle = salle;
 	}
-	
+
+	/**
+	 * @return the coursSession
+	 */
+	public CoursSession getCoursSession() {
+		return coursSession;
+	}
+
+	/**
+	 * @param coursSession the coursSession to set
+	 */
+	public void setCoursSession(CoursSession coursSession) {
+		this.coursSession = coursSession;
+	}
 
 }

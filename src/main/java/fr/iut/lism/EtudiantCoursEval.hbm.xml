@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25 avr. 2014 01:59:27 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="fr.iut.lism.EtudiantCoursEval" table="ETUDIANTCOURSEVAL">
+    	<composite-id>
+    		<key-many-to-one name="etudiant" column="IDETUDIANT" class="fr.iut.lism.Etudiant"/>
+    		<key-many-to-one name="coursSession" column="COURSSESSION" class="fr.iut.lism.CoursSession"/>
+    		<key-many-to-one name="evalSession" column="EVALSESSION" class="fr.iut.lism.EvalSession"/>
+    	</composite-id>
+        <!-- <id name="etudiant" type="fr.iut.lism.Etudiant">
+            <column name="IDETUDIANT" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="coursSession" class="fr.iut.lism.CoursSession" fetch="join">
+            <column name="COURSSESSION" />
+        </many-to-one>
+        <many-to-one name="evalSession" class="fr.iut.lism.EvalSession" fetch="join">
+            <column name="EVALSESSION" />
+        </many-to-one> -->
+        <property name="note" type="float">
+            <column name="NOTE" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="STATUS" />
+        </property>
+    </class>
+</hibernate-mapping>

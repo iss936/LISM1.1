@@ -3,21 +3,21 @@ package fr.iut.lism;
 import java.io.Serializable;
 
 public class EtudiantCoursEval implements Serializable{
-
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int idEtudiant;
-	private int idCoursSession;
-	private int idEvalSession;
+	private Etudiant etudiant;
+	private CoursSession coursSession;
+	private EvalSession evalSession;
 	private float note;
 	private String status;
 	
-	public EtudiantCoursEval(int idEtudiant, int idCoursSession, int idEvalSession, float note, String status) {
-		this.setIdEtudiant(idEtudiant);
-		this.setIdCoursSession(idCoursSession);
-		this.setIdEvalSession(idEvalSession);
+	public EtudiantCoursEval(Etudiant etudiant, CoursSession coursSession, EvalSession evalSession, float note, String status) {
+		this.setEtudiant(etudiant);
+		this.setCoursSession(coursSession);
+		this.setEvalSession(evalSession);
 		this.setNote(note);
 		this.setStatus(status);
 	}
@@ -25,47 +25,47 @@ public class EtudiantCoursEval implements Serializable{
 	public EtudiantCoursEval() {
 		
 	}
-
+	
 	/**
-	 * @return the idEtudiant
+	 * @return the etudiant
 	 */
-	public int getIdEtudiant() {
-		return idEtudiant;
+	public Etudiant getEtudiant() {
+		return etudiant;
 	}
 
 	/**
-	 * @param idEtudiant the idEtudiant to set
+	 * @param etudiant the etudiant to set
 	 */
-	public void setIdEtudiant(int idEtudiant) {
-		this.idEtudiant = idEtudiant;
+	public void setEtudiant(Etudiant etudiant) {
+		this.etudiant = etudiant;
 	}
 
 	/**
-	 * @return the idCoursSession
+	 * @return the coursSession
 	 */
-	public int getIdCoursSession() {
-		return idCoursSession;
+	public CoursSession getCoursSession() {
+		return coursSession;
 	}
 
 	/**
-	 * @param idCoursSession the idCoursSession to set
+	 * @param coursSession the coursSession to set
 	 */
-	public void setIdCoursSession(int idCoursSession) {
-		this.idCoursSession = idCoursSession;
+	public void setCoursSession(CoursSession coursSession) {
+		this.coursSession = coursSession;
 	}
 
 	/**
-	 * @return the idEvalSession
+	 * @return the evalSession
 	 */
-	public int getIdEvalSession() {
-		return idEvalSession;
+	public EvalSession getEvalSession() {
+		return evalSession;
 	}
 
 	/**
-	 * @param idEvalSession the idEvalSession to set
+	 * @param evalSession the evalSession to set
 	 */
-	public void setIdEvalSession(int idEvalSession) {
-		this.idEvalSession = idEvalSession;
+	public void setEvalSession(EvalSession evalSession) {
+		this.evalSession = evalSession;
 	}
 
 	/**
@@ -95,16 +95,6 @@ public class EtudiantCoursEval implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	@Override
-	public boolean equals(Object o)
-	{
-		return super.equals(o);
-	}
-	
-	@Override
-	public int hashCode()
-	{
-		return super.hashCode();
-	}
 }
+
+

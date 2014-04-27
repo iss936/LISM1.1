@@ -1,5 +1,7 @@
 package fr.iut.lism;
 
+import java.util.Set;
+
 public class Enseignant {
 
 	private int idEnseignant;
@@ -7,7 +9,8 @@ public class Enseignant {
 	private String nomEnseignant;
 	private String login;
 	private String mdp;
-	
+	private Set<CoursSessionItem> lesCoursSessionItem;
+
 	public Enseignant(int idEnseignant, String prenomEnseignant, String nomEnseignant, String login, String mdp) {
 		this.setIdEnseignant(idEnseignant);
 		this.setPrenomEnseignant(prenomEnseignant);
@@ -95,6 +98,20 @@ public class Enseignant {
 	 */
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+
+	/**
+	 * @return the lesCoursSessionItem
+	 */
+	public Set<CoursSessionItem> getLesCoursSessionItem() {
+		return lesCoursSessionItem;
+	}
+
+	/**
+	 * @param lesCoursSessionItem the lesCoursSessionItem to set
+	 */
+	public void setLesCoursSessionItem(Set<CoursSessionItem> lesCoursSessionItem) {
+		this.lesCoursSessionItem = lesCoursSessionItem;
 	}
 
 }

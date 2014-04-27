@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25 avr. 2014 01:59:27 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="fr.iut.lism.CoursSessionItem" table="COURSSESSIONITEM">
+        <id name="idCoursSessionItem" type="int">
+            <column name="IDCOURSSESSIONITEM" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="enseignant" class="fr.iut.lism.Enseignant" fetch="join">
+            <column name="IDENSEIGNANT" />
+        </many-to-one>
+        <many-to-one name="salle" class="fr.iut.lism.Salle" fetch="join">
+            <column name="IDSALLE" />
+        </many-to-one>
+        <many-to-one name="coursSession" class="fr.iut.lism.CoursSession" fetch="join">
+            <column name="IDCOURSSESSION" />
+        </many-to-one>
+        <property name="descriptionDetail" type="java.lang.String">
+            <column name="DESCRIPTIONDETAIL" />
+        </property>
+    </class>
+</hibernate-mapping>

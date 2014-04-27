@@ -1,9 +1,62 @@
 package fr.iut.lism.dao.implementation;
 
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fr.iut.lism.Etudiant;
+import fr.iut.lism.dao.interfaces.EtudiantDao;
+
 @Repository
-public class EtudiantDaoImpl {
+public class EtudiantDaoImpl implements EtudiantDao{
+
+	
+	private SessionFactory sessionFactory;
+	
+	@Override
+	public void createEtudiant(String prenom, String nom, String login,
+			String mdp) {
+		Etudiant e = new Etudiant(prenom, nom, login, mdp);
+		sessionFactory.getCurrentSession().save(e);
+		
+	}
+
+	@Override
+	public Etudiant getUnEtudiant(int idEtudiant) {
+		return (Etudiant) sessionFactory.getCurrentSession().load(Etudiant.class, idEtudiant);
+	}
+
+	@Override
+	public Etudiant getUnEtudiant(String login, String mdp) {
+		return (Etudiant) sessionFactory.getCurrentSession().createQuery(" from Etudian where login=" + login + " and mdp=" + mdp).list().get(0);
+	}
+
+	@Override
+	public List<Etudiant> getLesEtudiants() {
+		return sessionFactory.getCurrentSession().createQuery(" from Etudiant").list();
+	}
+
+	@Override
+	public void updateEtudiant(int idEtudiant, String prenom, String nom,
+			String login, String mdp) {
+		Etudiant e = getUnEtudiant(idEtudiant);
+		e.setPrenomEtudiant(prenom);
+		e.setNomEtudiant(nom);
+		e.setLogin(login);
+		e.setMdp(mdp);
+		
+	}
+
+	@Override
+	public void deleteEtudiant(int idEtudiant) {
+		Etudiant e = getUnEtudiant(idEtudiant);
+		if(e != null)
+			sessionFactory.getCurrentSession().delete(e);
+		
+	}
+	
 	
 	/*
 	 public static void createEtudiant(String prenom, String nom, String login, String mdp) {

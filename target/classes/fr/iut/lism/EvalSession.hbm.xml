@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25 avr. 2014 01:59:27 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="fr.iut.lism.EvalSession" table="EVALSESSION">
+        <id name="idEvalSession" type="int">
+            <column name="IDEVALSESSION" />
+            <generator class="assigned" />
+        </id>
+        <property name="dateDebut" type="java.sql.Date">
+            <column name="DATEDEBUT" />
+        </property>
+        <property name="dateFin" type="java.sql.Date">
+            <column name="DATEFIN" />
+        </property>
+        <many-to-one name="coursSession" class="fr.iut.lism.CoursSession" fetch="join">
+            <column name="IDCOURSSESSION" />
+        </many-to-one>
+        <set name="lesEtudiantCoursEval" table="ETUDIANTCOURSEVAL" inverse="false" lazy="true">
+            <key>
+                <column name="IDEVALSESSION" />
+            </key>
+            <one-to-many class="fr.iut.lism.EtudiantCoursEval" />
+        </set>
+    </class>
+</hibernate-mapping>
