@@ -12,7 +12,6 @@ public class CoursSession {
 	private String typeCoursSession;
 	private Set<CoursSessionItem> lesCoursSessionItem;
 	private Set<EvalSession> lesEvalSession;
-	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
 	private Set<InscriptionSession> lesInscriptionSession;
 	
 	public CoursSession(int idCoursSession, java.util.Date dateDebut, java.util.Date dateFin, int idCoursSessionItem, String description, Cours cours, String typeCoursSession) {
@@ -137,19 +136,6 @@ public class CoursSession {
 		this.lesEvalSession = lesEvalSession;
 	}
 
-	/**
-	 * @return the lesEtudiantCoursEval
-	 */
-	public Set<EtudiantCoursEval> getLesEtudiantCoursEval() {
-		return lesEtudiantCoursEval;
-	}
-
-	/**
-	 * @param lesEtudiantCoursEval the lesEtudiantCoursEval to set
-	 */
-	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
-		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
-	}
 
 	/**
 	 * @return the lesInscriptionSession

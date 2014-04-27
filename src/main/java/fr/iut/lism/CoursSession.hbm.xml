@@ -35,12 +35,6 @@
             </key>
             <one-to-many class="fr.iut.lism.EvalSession" />
         </set>
-        <set name="lesEtudiantCoursEval" table="ETUDIANTCOURSEVAL" inverse="false" lazy="true">
-            <key>
-                <column name="IDCOURSSESSION" />
-            </key>
-            <one-to-many class="fr.iut.lism.EtudiantCoursEval" />
-        </set>
         <set name="lesInscriptionSession" table="INSCRIPTIONSESSION" inverse="false" lazy="true">
             <key>
                 <column name="IDCOURSSESSION" />
