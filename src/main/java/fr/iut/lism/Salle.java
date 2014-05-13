@@ -2,6 +2,7 @@ package fr.iut.lism;
 
 import java.util.Set;
 
+
 public class Salle {
 
 	private int idSalle;

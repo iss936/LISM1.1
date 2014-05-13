@@ -1,12 +1,21 @@
 package fr.iut.lism;
 
 import java.util.Set;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 public class CoursSession {
 
 	private int idCoursSession;
-	private java.util.Date dateDebut;
-	private java.util.Date dateFin;
+	private Date dateDebut;
+	private Date dateFin;
 	private String description;
 	private Cours cours;
 	private String typeCoursSession;
@@ -14,7 +23,7 @@ public class CoursSession {
 	private Set<EvalSession> lesEvalSession;
 	private Set<InscriptionSession> lesInscriptionSession;
 	
-	public CoursSession(int idCoursSession, java.util.Date dateDebut, java.util.Date dateFin, int idCoursSessionItem, String description, Cours cours, String typeCoursSession) {
+	public CoursSession(int idCoursSession, Date dateDebut, Date dateFin, int idCoursSessionItem, String description, Cours cours, String typeCoursSession) {
 		this.setIdCoursSession(idCoursSession);
 		this.setDateDebut(dateDebut);
 		this.setDateFin(dateFin);
@@ -44,28 +53,28 @@ public class CoursSession {
 	/**
 	 * @return the dateDebut
 	 */
-	public java.util.Date getDateDebut() {
+	public Date getDateDebut() {
 		return dateDebut;
 	}	
 
 	/**
 	 * @param dateDebut the dateDebut to set
 	 */
-	public void setDateDebut(java.util.Date dateDebut) {
+	public void setDateDebut(Date dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
 	/**
 	 * @return the dateFin
 	 */
-	public java.util.Date getDateFin() {
+	public Date getDateFin() {
 		return dateFin;
 	}
 
 	/**
 	 * @param dateFin the dateFin to set
 	 */
-	public void setDateFin(java.util.Date dateFin) {
+	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
 	

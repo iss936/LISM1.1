@@ -20,6 +20,7 @@
     <context:component-scan base-package="fr.iut" />
  
  	<bean id="coursDaoImpl" class="fr.iut.lism.dao.implementation.CoursDaoImpl">
+ 		<property name="sessionFactory" ref="sessionFactory"/>
  	</bean>
  	
     <bean id="jspViewResolver"
@@ -37,14 +38,13 @@
     </bean>
     
     <bean id="propertyConfigurer"
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-        p:location="/WEB-INF/jdbc.properties" />
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" />
  
     <bean id="dataSource"
         class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-        p:driverClassName="${jdbc.driverClassName}"
-        p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
-        p:password="${jdbc.password}" />
+        p:driverClassName="com.mysql.jdbc.Driver"
+        p:url="jdbc:mysql://localhost:3306/lism" p:username="root"
+        p:password="" />
  
     <bean id="sessionFactory"
         class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">

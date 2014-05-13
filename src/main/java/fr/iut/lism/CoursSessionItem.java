@@ -1,5 +1,6 @@
 package fr.iut.lism;
 
+
 public class CoursSessionItem {
 
 	private int idCoursSessionItem;

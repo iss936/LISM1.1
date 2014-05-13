@@ -12,7 +12,6 @@ import fr.iut.lism.dao.interfaces.CoursDao;
 @Repository
 public class CoursDaoImpl implements CoursDao{
 
-	@Autowired
 	private SessionFactory sessionFactory;
 	
 	public void createCours(String libelle) {

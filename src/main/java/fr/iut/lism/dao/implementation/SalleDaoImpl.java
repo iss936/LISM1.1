@@ -1,25 +1,43 @@
 package fr.iut.lism.dao.implementation;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class SalleDaoImpl {
+import fr.iut.lism.Salle;
+import fr.iut.lism.dao.interfaces.SalleDao;
 
-//	public static Salle getLaSalle(int idSalle) {
-//		Salle salle = new Salle();
-//		Session sess = null;
-//		try{
-//			sess = HibernateUtil.getSessionFactory().openSession();
-//			Transaction tx = sess.beginTransaction();
-//			salle = (Salle) sess.createQuery(" from Salle where idSalle=" + idSalle).list().get(0);
-//			tx.commit();
-//		}
-//		catch(Exception ex){
-//			ex.printStackTrace();
-//		}
-//		finally{
-//			sess.close();
-//		}
-//		return salle;
-//	}
+@Repository
+public class SalleDaoImpl implements SalleDao{
+
+	@Override
+	public void createSalle(String libelle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Salle getUneSalle(int idSalle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Salle> getLesSalles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateSalle(int idSalle, String libelleSalle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteSalle(int idSalle) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

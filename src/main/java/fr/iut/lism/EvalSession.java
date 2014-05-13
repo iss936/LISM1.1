@@ -1,7 +1,15 @@
 package fr.iut.lism;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 public class EvalSession {
 
@@ -12,7 +20,6 @@ public class EvalSession {
 	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
 	
 	public EvalSession(int idEvalSession, Date dateDebut, Date dateFin, CoursSession coursSession) {
-		super();
 		this.idEvalSession = idEvalSession;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
