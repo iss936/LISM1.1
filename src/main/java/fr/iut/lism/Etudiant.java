@@ -8,16 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+@Entity
 public class Etudiant {
 
+	@Id
 	private int idEtudiant;
+	
 	private String prenomEtudiant;
 	private String nomEtudiant;
 	private String login;
 	private String mdp;
-	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
-	private Set<InscriptionSession> lesInscriptionSession;
-	
+
+//	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
+//	private Set<InscriptionSession> lesInscriptionSession;
+//	
 	public Etudiant(int idEtudiant, String prenomEtudiant, String nomEtudiant, String login, String mdp) {
 		this.setIdEtudiant(idEtudiant);
 		this.setPrenomEtudiant(prenomEtudiant);
@@ -105,33 +109,33 @@ public class Etudiant {
 		this.mdp = mdp;
 	}
 
-	/**
-	 * @return the lesEtudiantCoursEval
-	 */
-	public Set<EtudiantCoursEval> getLesEtudiantCoursEval() {
-		return lesEtudiantCoursEval;
-	}
-
-	/**
-	 * @param lesEtudiantCoursEval the lesEtudiantCoursEval to set
-	 */
-	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
-		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
-	}
-
-	/**
-	 * @return the lesInscriptionSession
-	 */
-	public Set<InscriptionSession> getLesInscriptionSession() {
-		return lesInscriptionSession;
-	}
-
-	/**
-	 * @param lesInscriptionSession the lesInscriptionSession to set
-	 */
-	public void setLesInscriptionSession(Set<InscriptionSession> lesInscriptionSession) {
-		this.lesInscriptionSession = lesInscriptionSession;
-	}
+//	/**
+//	 * @return the lesEtudiantCoursEval
+//	 */
+//	public Set<EtudiantCoursEval> getLesEtudiantCoursEval() {
+//		return lesEtudiantCoursEval;
+//	}
+//
+//	/**
+//	 * @param lesEtudiantCoursEval the lesEtudiantCoursEval to set
+//	 */
+//	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
+//		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
+//	}
+//
+//	/**
+//	 * @return the lesInscriptionSession
+//	 */
+//	public Set<InscriptionSession> getLesInscriptionSession() {
+//		return lesInscriptionSession;
+//	}
+//
+//	/**
+//	 * @param lesInscriptionSession the lesInscriptionSession to set
+//	 */
+//	public void setLesInscriptionSession(Set<InscriptionSession> lesInscriptionSession) {
+//		this.lesInscriptionSession = lesInscriptionSession;
+//	}
 	
 	
 }

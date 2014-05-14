@@ -2,11 +2,24 @@ package fr.iut.lism;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Cours {
 
+	
+	@Id
 	private int idCours;
+	
 	private String libelleCours;
-	private Set<CoursSession> lesCoursSession;
+	
+//	@OneToMany(cascade=CascadeType.ALL)
+//	private Set<CoursSession> lesCoursSession;
+	
 	
 	public Cours(int idCours, String libelle) {
 		this.setIdCours(idCours);
@@ -49,19 +62,19 @@ public class Cours {
 		this.libelleCours = libelle;
 	}
 
-	/**
-	 * @return the lesCoursSession
-	 */
-	public Set<CoursSession> getLesCoursSession() {
-		return lesCoursSession;
-	}
-
-	/**
-	 * @param lesCoursSession the lesCoursSession to set
-	 */
-	public void setLesCoursSession(Set<CoursSession> lesCoursSession) {
-		this.lesCoursSession = lesCoursSession;
-	}
+//	/**
+//	 * @return the lesCoursSession
+//	 */
+//	public Set<CoursSession> getLesCoursSession() {
+//		return lesCoursSession;
+//	}
+//
+//	/**
+//	 * @param lesCoursSession the lesCoursSession to set
+//	 */
+//	public void setLesCoursSession(Set<CoursSession> lesCoursSession) {
+//		this.lesCoursSession = lesCoursSession;
+//	}
 	
 
 }

@@ -3,27 +3,28 @@ package fr.iut.lism;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
+@Entity
 public class EvalSession {
 
+	@Id
 	private int idEvalSession;
 	private Date dateDebut;
 	private Date dateFin;
-	private CoursSession coursSession;
-	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
 	
+//	@ManyToOne
+//	private CoursSession coursSession;
+	
+//	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
+//	
 	public EvalSession(int idEvalSession, Date dateDebut, Date dateFin, CoursSession coursSession) {
 		this.idEvalSession = idEvalSession;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.coursSession = coursSession;
+//		this.coursSession = coursSession;
 	}
 	
 	public EvalSession() {
@@ -69,29 +70,29 @@ public class EvalSession {
 	/**
 	 * @return the coursSession
 	 */
-	public CoursSession getCoursSession() {
-		return coursSession;
-	}
-	/**
-	 * @param coursSession the coursSession to set
-	 */
-	public void setCoursSession(CoursSession coursSession) {
-		this.coursSession = coursSession;
-	}
+//	public CoursSession getCoursSession() {
+//		return coursSession;
+//	}
+//	/**
+//	 * @param coursSession the coursSession to set
+//	 */
+//	public void setCoursSession(CoursSession coursSession) {
+//		this.coursSession = coursSession;
+//	}
 
-	/**
-	 * @return the lesEtudiantCoursEval
-	 */
-	public Set<EtudiantCoursEval> getLesEtudiantCoursEval() {
-		return lesEtudiantCoursEval;
-	}
-
-	/**
-	 * @param lesEtudiantCoursEval the lesEtudiantCoursEval to set
-	 */
-	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
-		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
-	}
+//	/**
+//	 * @return the lesEtudiantCoursEval
+//	 */
+//	public Set<EtudiantCoursEval> getLesEtudiantCoursEval() {
+//		return lesEtudiantCoursEval;
+//	}
+//
+//	/**
+//	 * @param lesEtudiantCoursEval the lesEtudiantCoursEval to set
+//	 */
+//	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
+//		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
+//	}
 	
 	
 }

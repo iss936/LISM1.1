@@ -2,10 +2,8 @@ package fr.iut.lism.service.implementation;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.iut.lism.Cours;
 import fr.iut.lism.dao.interfaces.CoursDao;
@@ -29,7 +27,7 @@ public class CoursServiceImpl implements CoursService{
 
 	@Transactional
 	public List<Cours> getLesCours() {
-		return coursDao.getLesCours();
+		return coursDao.findAll();
 	}
 
 	@Transactional

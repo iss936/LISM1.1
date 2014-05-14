@@ -2,20 +2,21 @@ package fr.iut.lism;
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
+@Entity
 public class Enseignant {
 
+	@Id
 	private int idEnseignant;
+
 	private String prenomEnseignant;
 	private String nomEnseignant;
 	private String login;
 	private String mdp;
-	private Set<CoursSessionItem> lesCoursSessionItem;
+	
+//	private Set<CoursSessionItem> lesCoursSessionItem;
 
 	public Enseignant(int idEnseignant, String prenomEnseignant, String nomEnseignant, String login, String mdp) {
 		this.setIdEnseignant(idEnseignant);
@@ -106,18 +107,18 @@ public class Enseignant {
 		this.mdp = mdp;
 	}
 
-	/**
-	 * @return the lesCoursSessionItem
-	 */
-	public Set<CoursSessionItem> getLesCoursSessionItem() {
-		return lesCoursSessionItem;
-	}
-
-	/**
-	 * @param lesCoursSessionItem the lesCoursSessionItem to set
-	 */
-	public void setLesCoursSessionItem(Set<CoursSessionItem> lesCoursSessionItem) {
-		this.lesCoursSessionItem = lesCoursSessionItem;
-	}
+//	/**
+//	 * @return the lesCoursSessionItem
+//	 */
+//	public Set<CoursSessionItem> getLesCoursSessionItem() {
+//		return lesCoursSessionItem;
+//	}
+//
+//	/**
+//	 * @param lesCoursSessionItem the lesCoursSessionItem to set
+//	 */
+//	public void setLesCoursSessionItem(Set<CoursSessionItem> lesCoursSessionItem) {
+//		this.lesCoursSessionItem = lesCoursSessionItem;
+//	}
 
 }

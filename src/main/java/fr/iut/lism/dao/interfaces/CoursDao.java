@@ -8,7 +8,7 @@ public interface CoursDao {
 	
 	public void createCours(String libelle);
 	public Cours getUnCours(int idCours);
-	public List<Cours> getLesCours();
+	public List<Cours> findAll();
 	public void updateCours(int idCours, String libelle);
 	public void deleteCours(int idCours);
 }

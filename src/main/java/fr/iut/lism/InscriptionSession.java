@@ -2,13 +2,18 @@ package fr.iut.lism;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+
+//@Entity
 public class InscriptionSession implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private Etudiant etudiant;
+	
 	private CoursSession coursSession;
 	
 	public InscriptionSession(Etudiant etudiant, CoursSession coursSession) {
