@@ -12,24 +12,12 @@
 
 		<h1>Les Cours</h1>
 		<table>
-			<tr>
-			
-			<td>Intitulé</td>
-			<td>Date Debut</td>
-			<td>Date Fin</td>
-			<td>Type de Cours</td>
-			<td>Détails</td>
-			
-			</tr>
 									
 			<c:forEach var="unCour"  items="${courseList}" >
 			<tr>
-				<td><c:out value="${unCour.idCours}"/></td>
+				
 				<td><c:out value="${unCour.libelleCours}"/></td>
 				
-				<%-- <td><c:out value="${unCour.getDateDebut()}"/></td> --%>
-				<%-- <td><% out.print(lesCoursSession.get(i).getTypeCoursSession()); %></td>
-				<td><a href="FicheCoursSessionItem?idCoursSession=<% out.print(lesCoursSession.get(i).getIdCoursSession()); %>">En Savoir Plus</a></td> --%>
 			</tr>
 			</c:forEach> 
 							

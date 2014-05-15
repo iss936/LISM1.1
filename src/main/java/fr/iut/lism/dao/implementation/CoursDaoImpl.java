@@ -20,14 +20,14 @@ public class CoursDaoImpl implements CoursDao{
 	@PersistenceContext
 	private EntityManager em;
 	
-//	public void createCours(String libelle) {
-//		Cours c = new Cours(libelle);
-//		em.persist(c);
-//	}
-//	
-//	public Cours getUnCours(int idCours) {
-//		return em.find(Cours.class, idCours);
-//	}
+	public void createCours(String libelle) {
+		Cours c = new Cours(libelle);
+		em.persist(c);
+	}
+	
+	public Cours getUnCours(int idCours) {
+		return em.find(Cours.class, idCours);
+	}
 
 	public List<Cours> findAll() {
 		return em.createQuery(" from Cours").getResultList();
@@ -44,15 +44,4 @@ public class CoursDaoImpl implements CoursDao{
 			em.remove(c);
 	}
 
-	@Override
-	public void createCours(String libelle) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Cours getUnCours(int idCours) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
