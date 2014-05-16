@@ -1,46 +1,52 @@
 package fr.iut.lism.dao.implementation;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Component;
+import fr.iut.lism.CoursSession;
+import fr.iut.lism.CoursSessionItem;
+import fr.iut.lism.Enseignant;
+import fr.iut.lism.Salle;
+import fr.iut.lism.dao.interfaces.CoursSessionItemDao;
 
+@Component
+public class CoursSessionItemDaoImpl implements CoursSessionItemDao{
 
-@Repository
-public class CoursSessionItemDaoImpl {
+	@PersistenceContext
+	private EntityManager em;
+	
+	@Override
+	public void createCoursSessionItem(Enseignant e, Salle s, CoursSession c,
+			String descriptionDetail) {
+		CoursSessionItem csi = new CoursSessionItem(e, s, c, descriptionDetail);
+		em.persist(csi);
+	}
 
-//	public static List<CoursSessionItem> getLesCoursSessionItem(int idCoursSession) {
-//		int coursSession = idCoursSession;
-//		List<CoursSessionItem> lesCoursSessionItem = null;
-//		Session sess = null;
-//		try{
-//			sess = HibernateUtil.getSessionFactory().openSession();
-//			Transaction tx = sess.beginTransaction();
-//			lesCoursSessionItem = sess.createQuery(" from CoursSessionItem where idCoursSession=" + coursSession).list();
-//		    tx.commit();
-//		}
-//		catch(Exception ex){
-//		      ex.printStackTrace();
-//		      System.out.println("Lecture échouée " + ex.getMessage());
-//		}
-//		finally{
-//			sess.close();
-//		}
-//		return lesCoursSessionItem;
-//	}
-//	
-//	public static CoursSessionItem getCoursSessionItem(int idSession) {
-//		CoursSessionItem csi = new CoursSessionItem();
-//		Session sess = null;
-//		try{
-//			sess = HibernateUtil.getSessionFactory().openSession();
-//			Transaction tx = sess.beginTransaction();
-//			csi = (CoursSessionItem) sess.createQuery(" from CoursSessionItem where idSession=" + idSession).list().get(0);
-//			tx.commit();
-//		}
-//		catch(Exception ex){
-//			ex.printStackTrace();
-//		}
-//		finally{
-//			sess.close();
-//		}
-//		return csi;
-//	}
+	@Override
+	public CoursSessionItem getUnCoursSessionItem(int idCoursSessionItem) {
+		return em.find(CoursSessionItem.class, idCoursSessionItem);
+	}
+
+	@Override
+	public List<CoursSessionItem> getLesCoursSessionsItem() {
+		return em.createQuery(" from CoursSessionItem").getResultList();
+	}
+
+	@Override
+	public void updateCoursSessionItem(int idCoursSessionItem, Enseignant e,
+			Salle s, CoursSession c, String descriptionDetail) {
+		CoursSessionItem csi = getUnCoursSessionItem(idCoursSessionItem);
+		csi.setEnseignant(e);
+		csi.setSalle(s);
+		csi.setCoursSession(c);
+		csi.setDescriptionDetail(descriptionDetail);
+	}
+
+	@Override
+	public void deleteCoursSessionItem(int idCoursSessionItem) {
+		CoursSessionItem csi = getUnCoursSessionItem(idCoursSessionItem);
+		if(csi != null)
+			em.remove(csi);
+	}
 }

@@ -2,8 +2,10 @@ package fr.iut.lism;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -12,13 +14,20 @@ public class CoursSession {
 	@Id
 	private int idCoursSession;
 	
+	@Column(name="date_debut")
 	private Date dateDebut;
+	
+	@Column(name="date_fin")
 	private Date dateFin;
+	
+	@Column(name="description")
 	private String description;
 	
-//	@ManyToOne
-//	private Cours cours;
+	@ManyToOne
+	@JoinColumn(name="id_cours")
+	private Cours cours;
 	
+	@Column(name="type_cours_session")
 	private String typeCoursSession;
 
 //	@OneToMany()
@@ -30,12 +39,18 @@ public class CoursSession {
 //	@OneToMany()
 //	private Set<InscriptionSession> lesInscriptionSession;
 	
-	public CoursSession(int idCoursSession, Date dateDebut, Date dateFin, int idCoursSessionItem, String description, Cours cours, String typeCoursSession) {
+	public CoursSession(int idCoursSession, Date dateDebut, Date dateFin, String description, Cours cours, String typeCoursSession) {
 		this.setIdCoursSession(idCoursSession);
 		this.setDateDebut(dateDebut);
 		this.setDateFin(dateFin);
 		this.setDescription(description);
-//		this.setCours(cours);
+		this.setCours(cours);
+		this.setTypeCoursSession(typeCoursSession);
+	}
+	
+	public CoursSession(Date dateDebut, Date dateFin, String description, Cours c, String typeCoursSession) {
+		this.setDateDebut(dateDebut);
+		this.setDateFin(dateFin);
 		this.setTypeCoursSession(typeCoursSession);
 	}
 	
@@ -110,19 +125,19 @@ public class CoursSession {
 		this.description = description;
 	}
 
-//	/**
-//	 * @return the cours
-//	 */
-//	public Cours getCours() {
-//		return cours;
-//	}
-//
-//	/**
-//	 * @param cours the cours to set
-//	 */
-//	public void setCours(Cours cours) {
-//		this.cours = cours;
-//	}
+	/**
+	 * @return the cours
+	 */
+	public Cours getCours() {
+		return cours;
+	}
+
+	/**
+	 * @param cours the cours to set
+	 */
+	public void setCours(Cours cours) {
+		this.cours = cours;
+	}
 
 //	/**
 //	 * @return the lesCoursSessionItem

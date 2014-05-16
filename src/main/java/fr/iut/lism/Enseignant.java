@@ -2,8 +2,10 @@ package fr.iut.lism;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Enseignant {
@@ -11,12 +13,20 @@ public class Enseignant {
 	@Id
 	private int idEnseignant;
 
+	@Column(name="prenom_enseignant")
 	private String prenomEnseignant;
+	
+	@Column(name="nom_enseignant")
 	private String nomEnseignant;
+	
+	@Column(name="login")
 	private String login;
+	
+	@Column(name="mdp")
 	private String mdp;
 	
-//	private Set<CoursSessionItem> lesCoursSessionItem;
+	@OneToMany(mappedBy="enseignant")
+	private Set<CoursSessionItem> lesCoursSessionItem;
 
 	public Enseignant(int idEnseignant, String prenomEnseignant, String nomEnseignant, String login, String mdp) {
 		this.setIdEnseignant(idEnseignant);
@@ -107,18 +117,18 @@ public class Enseignant {
 		this.mdp = mdp;
 	}
 
-//	/**
-//	 * @return the lesCoursSessionItem
-//	 */
-//	public Set<CoursSessionItem> getLesCoursSessionItem() {
-//		return lesCoursSessionItem;
-//	}
-//
-//	/**
-//	 * @param lesCoursSessionItem the lesCoursSessionItem to set
-//	 */
-//	public void setLesCoursSessionItem(Set<CoursSessionItem> lesCoursSessionItem) {
-//		this.lesCoursSessionItem = lesCoursSessionItem;
-//	}
+	/**
+	 * @return the lesCoursSessionItem
+	 */
+	public Set<CoursSessionItem> getLesCoursSessionItem() {
+		return lesCoursSessionItem;
+	}
+
+	/**
+	 * @param lesCoursSessionItem the lesCoursSessionItem to set
+	 */
+	public void setLesCoursSessionItem(Set<CoursSessionItem> lesCoursSessionItem) {
+		this.lesCoursSessionItem = lesCoursSessionItem;
+	}
 
 }

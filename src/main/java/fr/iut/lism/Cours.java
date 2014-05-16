@@ -15,6 +15,7 @@ public class Cours {
 	@Id
 	private int idCours;
 	
+	@Column(name="libelle_cours")
 	private String libelleCours;
 	
 //	@OneToMany(cascade=CascadeType.ALL)

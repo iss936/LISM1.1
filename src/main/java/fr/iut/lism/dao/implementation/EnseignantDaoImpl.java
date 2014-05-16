@@ -10,7 +10,6 @@ public class EnseignantDaoImpl implements EnseignantDao{
 	@Override
 	public void createEnseignant(String prenom, String nom, String login,
 			String mdp) {
-		// TODO Auto-generated method stub
 		
 	}
 

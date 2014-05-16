@@ -16,7 +16,7 @@ import fr.iut.lism.dao.implementation.CoursDaoImpl;
 public class LoginController {
 	@Resource protected CoursDaoImpl coursDao;
 	
-	@RequestMapping(value = "/connexion", method = RequestMethod.POST)
+	@RequestMapping(value = "/connexion", method = {RequestMethod.POST, RequestMethod.GET})
 	public String list(Model model)
 	{
 		List<Cours> ls = coursDao.findAll();

@@ -27,4 +27,6 @@ public class CoursDaoTest {
 		Assert.assertEquals(5, coursDao.findAll().size());
 		
 	}
+	
+	
 }

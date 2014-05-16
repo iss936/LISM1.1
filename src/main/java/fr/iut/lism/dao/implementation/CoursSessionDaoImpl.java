@@ -1,48 +1,67 @@
 package fr.iut.lism.dao.implementation;
 
+
+import java.util.Date;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import org.springframework.stereotype.Component;
+
+import fr.iut.lism.Cours;
+import fr.iut.lism.CoursSession;
+import fr.iut.lism.CoursSessionItem;
 import fr.iut.lism.dao.interfaces.CoursSessionDao;
 
-@Repository
+@Component
 public class CoursSessionDaoImpl implements CoursSessionDao{
+	
+	@PersistenceContext
+	private EntityManager em;
 
-//	public static List<CoursSession> getLesCoursSession(int idCours) {
-//		int courss = idCours;
-//		List<CoursSession> lesCoursSession = null;
-//		Session sess = null;
-//		try{
-//			sess = HibernateUtil.getSessionFactory().openSession();
-//			Transaction tx = sess.beginTransaction();
-//			lesCoursSession = sess.createQuery(" from CoursSession where idCours=" + courss).list();
-//		    tx.commit();
-//		}
-//		catch(Exception ex){
-//		      ex.printStackTrace();
-//		      System.out.println("Lecture échouée " + ex.getMessage());
-//		}
-//		finally{
-//			sess.close();
-//		}
-//		return lesCoursSession;
-//	}
-//	
-//	public static CoursSession getUnCoursSession(int idCoursSession) {
-//		CoursSession cs = new CoursSession();
-//		Session sess = null;
-//		try{
-//			sess = HibernateUtil.getSessionFactory().openSession();
-//			Transaction tx = sess.beginTransaction();
-//			cs = (CoursSession) sess.createQuery(" from CoursSession where idCoursSession=" + idCoursSession).list().get(0);
-//			tx.commit();
-//		}
-//		catch(Exception ex){
-//			ex.printStackTrace();
-//		}
-//		finally{
-//			sess.close();
-//		}
-//		return cs;
-//	}
+	@Override
+	public void createCoursSession(Date dateDebut, Date dateFin, String description, Cours c, String typeCoursSession) {
+		CoursSession cs = new CoursSession(dateDebut, dateFin, description, c, typeCoursSession);
+		em.persist(cs);
+	}
+
+	@Override
+	public CoursSession getUnCoursSession(int idCoursSession) {
+		return em.find(CoursSession.class, idCoursSession);
+	}
+
+	@Override
+	public List<CoursSessionItem> findAll(int idCoursSession) {
+		// TODO Auto-generated method stub
+		return em.createQuery(" from CoursSessionItem where id_cours_session = " + idCoursSession).getResultList();
+	}
+	
+	@Override
+	public void updateCoursSession(int idCoursSession, Date dateDebut,
+			Date dateFin, String description, Cours c, String typeCoursSession) {
+		CoursSession cs = getUnCoursSession(idCoursSession);
+		cs.setDateDebut(dateDebut);
+		cs.setDateFin(dateFin);
+		cs.setDescription(description);
+		cs.setCours(c);
+		cs.setTypeCoursSession(typeCoursSession);
+	}
+
+	@Override
+	public void deleteCoursSession(int idCoursSession) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Cours getCours(int id)
+	{
+		return em.find(Cours.class, id);
+	}
+
+	@Override
+	public List<CoursSession> findAll() {
+		return em.createQuery("from CoursSession").getResultList();
+	}
 }
