@@ -10,7 +10,7 @@ public interface CoursSessionDao {
 
 	void createCoursSession(Date dateDebut, Date dateFin, String description, Cours c, String typeCoursSession);
 	CoursSession getUnCoursSession(int idCoursSession);
-	List<CoursSession> findAll();
+	List<CoursSession> getLesCoursSession();
 	void updateCoursSession(int idCoursSession, Date dateDebut, Date dateFin, String description, Cours c, String typeCoursSession);
 	void deleteCoursSession(int idCoursSession);
 	Cours getCours(int id);

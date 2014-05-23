@@ -56,20 +56,20 @@ public class CoursSession {
 	private Set<Etudiant> lesEtudiant = new HashSet<Etudiant>();
 	
 	public CoursSession(int idCoursSession, Date dateDebut, Date dateFin, String description, Cours cours, String typeCoursSession) {
-		this.setIdCoursSession(idCoursSession);
-		this.setDateDebut(dateDebut);
-		this.setDateFin(dateFin);
-		this.setDescription(description);
-		this.setCours(cours);
-		this.setTypeCoursSession(typeCoursSession);
+		this.idCoursSession = idCoursSession;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.description = description;
+		this.cours = cours;
+		this.typeCoursSession = typeCoursSession;
 	}
 	
-	public CoursSession(Date dateDebut, Date dateFin, String description, Cours c, String typeCoursSession) {
-		this.setDateDebut(dateDebut);
-		this.setDateFin(dateFin);
-		this.setDescription(description);
-		this.setCours(c);
-		this.setTypeCoursSession(typeCoursSession);
+	public CoursSession(Date dateDebut, Date dateFin, String description, Cours cours, String typeCoursSession) {
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.description = description;
+		this.cours = cours;
+		this.typeCoursSession = typeCoursSession;
 	}
 	
 	public CoursSession() {

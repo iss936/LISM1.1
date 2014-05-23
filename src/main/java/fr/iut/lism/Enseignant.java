@@ -31,18 +31,18 @@ public class Enseignant {
 	private Set<CoursSessionItem> lesCoursSessionItem;
 
 	public Enseignant(int idEnseignant, String prenomEnseignant, String nomEnseignant, String login, String mdp) {
-		this.setIdEnseignant(idEnseignant);
-		this.setPrenomEnseignant(prenomEnseignant);
-		this.setNomEnseignant(nomEnseignant);
-		this.setLogin(login);
-		this.setMdp(mdp);
+		this.idEnseignant = idEnseignant;
+		this.prenomEnseignant = prenomEnseignant;
+		this.nomEnseignant = nomEnseignant;
+		this.login = login;
+		this.mdp = mdp;
 	}
 	
 	public Enseignant(String prenomEnseignant, String nomEnseignant, String login, String mdp) {
-		this.setPrenomEnseignant(prenomEnseignant);
-		this.setNomEnseignant(nomEnseignant);
-		this.setLogin(login);
-		this.setMdp(mdp);
+		this.prenomEnseignant = prenomEnseignant;
+		this.nomEnseignant = nomEnseignant;
+		this.login = login;
+		this.mdp = mdp;
 	}
 	
 	public Enseignant() {

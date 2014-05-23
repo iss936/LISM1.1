@@ -8,7 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name="cours_session_item")
 public class CoursSessionItem {
@@ -32,26 +31,24 @@ public class CoursSessionItem {
 	private String descriptionDetail;
 	
 	public CoursSessionItem(int idCoursSessionItem, Enseignant enseignant, Salle salle, CoursSession coursSession, String descriptionDetail) {
-		this.setIdCoursSessionItem(idCoursSessionItem);
-		this.setEnseignant(enseignant);
-		this.setSalle(salle);
-		this.setCoursSession(coursSession);
-		this.setDescriptionDetail(descriptionDetail);
+		this.idCoursSessionItem =  idCoursSessionItem;
+		this.enseignant = enseignant;
+		this.salle = salle;
+		this.coursSession = coursSession;
+		this.descriptionDetail = descriptionDetail;
 	}
 
 	public CoursSessionItem(Enseignant enseignant, Salle salle, CoursSession coursSession, String descriptionDetail) {
-		this.setEnseignant(enseignant);
-		this.setEnseignant(enseignant);
-		this.setSalle(salle);
-		this.setDescriptionDetail(descriptionDetail);
+		this.enseignant = enseignant;
+		this.salle = salle;
+		this.coursSession = coursSession;
+		this.descriptionDetail = descriptionDetail;
 	}
 	
 	public CoursSessionItem() {
 		
 	}
 	
-
-
 	public String getDescriptionDetail() {
 		return descriptionDetail;
 	}
@@ -115,5 +112,4 @@ public class CoursSessionItem {
 	public void setCoursSession(CoursSession coursSession) {
 		this.coursSession = coursSession;
 	}
-
 }

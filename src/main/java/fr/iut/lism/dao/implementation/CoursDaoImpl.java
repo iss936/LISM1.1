@@ -31,8 +31,8 @@ public class CoursDaoImpl implements CoursDao{
 	}
 	
 	@Override
-	public List<CoursSession> getLesCoursSession(int id_cours) {
-		return em.createQuery(" from CoursSession where id_cours = " + id_cours).getResultList();
+	public List<CoursSession> getLesCoursSession(int idCours) {
+		return em.createQuery(" from CoursSession where id_cours = " + idCours).getResultList();
 	}
 	
 	@Override
@@ -44,7 +44,8 @@ public class CoursDaoImpl implements CoursDao{
 	@Override
 	public void deleteCours(int idCours) {
 		Cours c = getUnCours(idCours);
-		if(c != null)
+		if(c != null) {
 			em.remove(c);
+		}
 	}
 }

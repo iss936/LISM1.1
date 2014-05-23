@@ -1,23 +1,17 @@
 package fr.iut.lism.dao;
 
 import javax.annotation.Resource;
-
 import junit.framework.Assert;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-
 import fr.iut.lism.CoursSession;
 import fr.iut.lism.Etudiant;
-import fr.iut.lism.dao.implementation.CoursDaoImpl;
 import fr.iut.lism.dao.implementation.CoursSessionDaoImpl;
 import fr.iut.lism.dao.implementation.EtudiantDaoImpl;
-import fr.iut.lism.service.implementation.EtudiantServiceImpl;
 import fr.iut.lism.service.interfaces.EtudiantService;
 
 @RunWith(SpringJUnit4ClassRunner.class)

@@ -27,12 +27,12 @@ public class Cours {
 	
 	
 	public Cours(int idCours, String libelle) {
-		this.setIdCours(idCours);
-		this.setLibelleCours(libelle);
+		this.idCours = idCours;
+		this.libelleCours = libelle;
 	}
 	
 	public Cours(String libelle) {
-		this.setLibelleCours(libelle);
+		this.libelleCours = libelle;
 	}
 	
 	public Cours() {

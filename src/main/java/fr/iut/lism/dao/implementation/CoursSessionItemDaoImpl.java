@@ -17,8 +17,7 @@ public class CoursSessionItemDaoImpl implements CoursSessionItemDao{
 	private EntityManager em;
 	
 	@Override
-	public void createCoursSessionItem(Enseignant e, Salle s, CoursSession c,
-			String descriptionDetail) {
+	public void createCoursSessionItem(Enseignant e, Salle s, CoursSession c, String descriptionDetail) {
 		CoursSessionItem csi = new CoursSessionItem(e, s, c, descriptionDetail);
 		em.persist(csi);
 	}
@@ -34,8 +33,7 @@ public class CoursSessionItemDaoImpl implements CoursSessionItemDao{
 	}
 
 	@Override
-	public void updateCoursSessionItem(int idCoursSessionItem, Enseignant e,
-			Salle s, CoursSession c, String descriptionDetail) {
+	public void updateCoursSessionItem(int idCoursSessionItem, Enseignant e, Salle s, CoursSession c, String descriptionDetail) {
 		CoursSessionItem csi = getUnCoursSessionItem(idCoursSessionItem);
 		csi.setEnseignant(e);
 		csi.setSalle(s);
@@ -46,7 +44,8 @@ public class CoursSessionItemDaoImpl implements CoursSessionItemDao{
 	@Override
 	public void deleteCoursSessionItem(int idCoursSessionItem) {
 		CoursSessionItem csi = getUnCoursSessionItem(idCoursSessionItem);
-		if(csi != null)
+		if(csi != null) {
 			em.remove(csi);
+		}
 	}
 }

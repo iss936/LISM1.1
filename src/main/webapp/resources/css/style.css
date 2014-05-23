@@ -274,7 +274,7 @@ a:hover
 
 #CBG
 {
-	background : url("images/CBG.png") no-repeat bottom left;
+	background : url("../images/CBG.png") no-repeat bottom left;
 	float : left;
 	width : 8px;
 	height : 8px;

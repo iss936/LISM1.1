@@ -30,10 +30,11 @@ public class EnseignantDaoImpl implements EnseignantDao{
 
 	@Override
 	public Enseignant getUnEnseignant(String login, String mdp) {
-		if(em.createQuery("from Enseignant where login='" + login + "' and mdp='" + mdp + "'").getResultList().size() > 0)
+		if(!em.createQuery("from Enseignant where login='" + login + "' and mdp='" + mdp + "'").getResultList().isEmpty()) {
 			return (Enseignant)em.createQuery("from Enseignant where login='" + login + "' and mdp='" + mdp + "'").getSingleResult();
-		else
+		} else {
 			return null;
+		}
 	}
 
 	@Override
@@ -42,8 +43,7 @@ public class EnseignantDaoImpl implements EnseignantDao{
 	}
 
 	@Override
-	public void updateEnseignant(int idEnseignant, String prenom, String nom,
-			String login, String mdp) {
+	public void updateEnseignant(int idEnseignant, String prenom, String nom, String login, String mdp) {
 		Enseignant e = getUnEnseignant(idEnseignant);
 		e.setPrenomEnseignant(prenom);
 		e.setNomEnseignant(nom);
@@ -55,8 +55,8 @@ public class EnseignantDaoImpl implements EnseignantDao{
 	@Override
 	public void deleteEnseignant(int idEnseignant) {
 		Enseignant e = getUnEnseignant(idEnseignant);
-		if(e != null)
+		if(e != null) {
 			em.remove(e);
+		}
 	}
-
 }

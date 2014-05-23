@@ -1,9 +1,7 @@
 package fr.iut.lism.controller;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +19,9 @@ public class CoursController {
 	@Autowired protected CoursService coursService;
 	
 	@RequestMapping(value = "/courses", method = RequestMethod.GET)
-	public String list(Model model)
-	{
+	public String list(Model model) {
 		List<Cours> ls = coursService.getLesCours();
-		model.addAttribute("courseList",ls);		
+		model.addAttribute("courseList",ls);
 		return "course/list";
 	}
 	

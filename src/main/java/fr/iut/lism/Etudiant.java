@@ -2,7 +2,6 @@ package fr.iut.lism;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +19,7 @@ import javax.persistence.Table;
 public class Etudiant {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id_etudiant")
 	private int idEtudiant;
 	
@@ -46,18 +45,18 @@ public class Etudiant {
 	private Set<CoursSession> lesCoursSession = new HashSet<CoursSession>();
 	
 	public Etudiant(int idEtudiant, String prenomEtudiant, String nomEtudiant, String login, String mdp) {
-		this.setIdEtudiant(idEtudiant);
-		this.setPrenomEtudiant(prenomEtudiant);
-		this.setNomEtudiant(nomEtudiant);
-		this.setLogin(login);
-		this.setMdp(mdp);
+		this.idEtudiant = idEtudiant;
+		this.prenomEtudiant = prenomEtudiant;
+		this.nomEtudiant = nomEtudiant;
+		this.login = login;
+		this.mdp = mdp;
 	}
 	
-	public Etudiant(String prenomEtudiant, String nomEtudiant, String login, String mdp){
-		this.setPrenomEtudiant(prenomEtudiant);
-		this.setNomEtudiant(nomEtudiant);
-		this.setLogin(login);
-		this.setMdp(mdp);
+	public Etudiant(String prenomEtudiant, String nomEtudiant, String login, String mdp) {
+		this.prenomEtudiant = prenomEtudiant;
+		this.nomEtudiant = nomEtudiant;
+		this.login = login;
+		this.mdp = mdp;
 	}
 	
 	public Etudiant() {
@@ -160,20 +159,6 @@ public class Etudiant {
 //	 */
 //	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
 //		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
-//	}
-//
-//	/**
-//	 * @return the lesInscriptionSession
-//	 */
-//	public Set<InscriptionSession> getLesInscriptionSession() {
-//		return lesInscriptionSession;
-//	}
-//
-//	/**
-//	 * @param lesInscriptionSession the lesInscriptionSession to set
-//	 */
-//	public void setLesInscriptionSession(Set<InscriptionSession> lesInscriptionSession) {
-//		this.lesInscriptionSession = lesInscriptionSession;
 //	}
 	
 	public void addCoursSession(CoursSession cs) {

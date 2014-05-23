@@ -1,13 +1,11 @@
 package fr.iut.lism;
 
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name="salle")
@@ -23,8 +21,12 @@ public class Salle {
 	private Set<CoursSessionItem> lesCoursSessionItem;
 	
 	public Salle(int idSalle, String libelleSalle) {
-		this.setIdSalle(idSalle);
-		this.setLibelleSalle(libelleSalle);
+		this.idSalle = idSalle;
+		this.libelleSalle = libelleSalle;
+	}
+	
+	public Salle(String libelleSalle) {
+		this.libelleSalle = libelleSalle;
 	}
 	
 	public Salle() {
@@ -72,5 +74,4 @@ public class Salle {
 	public void setLesCoursSessionItem(Set<CoursSessionItem> lesCoursSessionItem) {
 		this.lesCoursSessionItem = lesCoursSessionItem;
 	}
-	
 }
