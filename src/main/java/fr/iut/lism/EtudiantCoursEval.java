@@ -2,16 +2,8 @@ package fr.iut.lism;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-
 public class EtudiantCoursEval implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Etudiant etudiant;
 	private EvalSession evalSession;

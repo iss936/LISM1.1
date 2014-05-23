@@ -3,12 +3,14 @@ package fr.iut.lism.dao.interfaces;
 import java.util.List;
 
 import fr.iut.lism.Cours;
+import fr.iut.lism.CoursSession;
 
 public interface CoursDao {
 	
-	public void createCours(String libelle);
-	public Cours getUnCours(int idCours);
-	public List<Cours> findAll();
-	public void updateCours(int idCours, String libelle);
-	public void deleteCours(int idCours);
+	void createCours(String libelle);
+	Cours getUnCours(int idCours);
+	List<Cours> getLesCours();
+	List<CoursSession> getLesCoursSession(int idCours);
+	void updateCours(int idCours, String libelle);
+	void deleteCours(int idCours);
 }

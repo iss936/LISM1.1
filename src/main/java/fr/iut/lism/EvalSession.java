@@ -1,22 +1,31 @@
 package fr.iut.lism;
 
 import java.util.Date;
-import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="eval_session")
 public class EvalSession {
 
 	@Id
 	private int idEvalSession;
+	
+	@Column(name="date_debut")
 	private Date dateDebut;
+	
+	@Column(name="date_fin")
 	private Date dateFin;
 	
-//	@ManyToOne
-//	private CoursSession coursSession;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_cours_session")
+	private CoursSession coursSession;
 	
 //	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
 //	
@@ -24,7 +33,7 @@ public class EvalSession {
 		this.idEvalSession = idEvalSession;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-//		this.coursSession = coursSession;
+		this.coursSession = coursSession;
 	}
 	
 	public EvalSession() {
@@ -70,15 +79,15 @@ public class EvalSession {
 	/**
 	 * @return the coursSession
 	 */
-//	public CoursSession getCoursSession() {
-//		return coursSession;
-//	}
-//	/**
-//	 * @param coursSession the coursSession to set
-//	 */
-//	public void setCoursSession(CoursSession coursSession) {
-//		this.coursSession = coursSession;
-//	}
+	public CoursSession getCoursSession() {
+		return coursSession;
+	}
+	/**
+	 * @param coursSession the coursSession to set
+	 */
+	public void setCoursSession(CoursSession coursSession) {
+		this.coursSession = coursSession;
+	}
 
 //	/**
 //	 * @return the lesEtudiantCoursEval

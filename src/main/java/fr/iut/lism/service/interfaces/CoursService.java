@@ -1,7 +1,6 @@
 package fr.iut.lism.service.interfaces;
 
 import java.util.List;
-
 import fr.iut.lism.Cours;
 
 public interface CoursService {

@@ -1,171 +1,75 @@
 package fr.iut.lism.dao.implementation;
 
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Component;
+
+import fr.iut.lism.Cours;
+import fr.iut.lism.CoursSession;
 import fr.iut.lism.Etudiant;
 import fr.iut.lism.dao.interfaces.EtudiantDao;
 
-@Repository
+@Component
 public class EtudiantDaoImpl implements EtudiantDao{
 
-	
-	private SessionFactory sessionFactory;
+	@PersistenceContext
+	private EntityManager em;
 	
 	@Override
-	public void createEtudiant(String prenom, String nom, String login,
-			String mdp) {
+	public void createEtudiant(String prenom, String nom, String login, String mdp) {
 		Etudiant e = new Etudiant(prenom, nom, login, mdp);
-		sessionFactory.getCurrentSession().save(e);
-		
+		em.persist(e);
 	}
 
 	@Override
 	public Etudiant getUnEtudiant(int idEtudiant) {
-		return (Etudiant) sessionFactory.getCurrentSession().load(Etudiant.class, idEtudiant);
+		return em.find(Etudiant.class, idEtudiant);
 	}
 
 	@Override
 	public Etudiant getUnEtudiant(String login, String mdp) {
-		return (Etudiant) sessionFactory.getCurrentSession().createQuery(" from Etudian where login=" + login + " and mdp=" + mdp).list().get(0);
+		if(em.createQuery("from Etudiant where login='" + login + "' and mdp='" + mdp + "'").getResultList().size() > 0)
+			return (Etudiant)em.createQuery("from Etudiant where login='" + login + "' and mdp='" + mdp + "'").getSingleResult();
+		else
+			return null;
 	}
 
 	@Override
 	public List<Etudiant> getLesEtudiants() {
-		return sessionFactory.getCurrentSession().createQuery(" from Etudiant").list();
+		return em.createQuery(" from Etudiant").getResultList();
 	}
 
 	@Override
-	public void updateEtudiant(int idEtudiant, String prenom, String nom,
-			String login, String mdp) {
+	public void updateEtudiant(int idEtudiant, String prenom, String nom, String login, String mdp) {
 		Etudiant e = getUnEtudiant(idEtudiant);
 		e.setPrenomEtudiant(prenom);
 		e.setNomEtudiant(nom);
 		e.setLogin(login);
 		e.setMdp(mdp);
-		
+		em.persist(e);
 	}
 
 	@Override
 	public void deleteEtudiant(int idEtudiant) {
 		Etudiant e = getUnEtudiant(idEtudiant);
 		if(e != null)
-			sessionFactory.getCurrentSession().delete(e);
-		
+			em.remove(e);
 	}
-	
-	
-	/*
-	 public static void createEtudiant(String prenom, String nom, String login, String mdp) {
-		Session sess = null;
-		try{
-			sess = HibernateUtil.getSessionFactory().openSession();
-			Transaction tx = sess.beginTransaction();
-			Etudiant e = new Etudiant(prenom, nom, login, mdp);
-			sess.save(e);
-			tx.commit();
-			}
-		catch(Exception e){
-			System.out.println("Insertion échouée: " + e.getMessage());
-		}
-		finally{
-			sess.close();
-		}
-	}
-	
-	public static Etudiant getUnEtudiant(int idEtudiant) {
-		Etudiant e = new Etudiant();
-		Session sess = null;
-		try{
-			sess = HibernateUtil.getSessionFactory().openSession();
-			Transaction tx = sess.beginTransaction();
-			e = (Etudiant) sess.createQuery(" from Etudiant where idEtudiant=" + idEtudiant).list().get(0);
-			tx.commit();
-		}
-		catch(Exception ex){
-			ex.printStackTrace();
-		}
-		finally{
-			sess.close();
-		}
-		return e;
-	}
-	
-	public static Etudiant getUnEtudiant(String login, String mdp) {
-		Etudiant e = null;
-		Session sess = null;
-		try{
-			sess = HibernateUtil.getSessionFactory().openSession();
-			Transaction tx = sess.beginTransaction();
-			Query query = sess.createQuery("from Etudiant where login='" + login + "' and mdp='" + mdp + "'");
-			e = (Etudiant)query.list().get(0);
-			tx.commit();
-		}
-		catch(Exception ex){
-			System.out.println(ex.getMessage());
-		}
-		finally{
-			sess.close();
-		}
-		return e;
-	}
-	
-	public static List<Etudiant> getLesEtudiants() {
-		List<Etudiant> lesEtudiants = null;
-		Session sess = null;
-		try{
-			sess = HibernateUtil.getSessionFactory().openSession();
-			Transaction tx = sess.beginTransaction();
-			lesEtudiants = sess.createQuery(" from Etudiant").list();
-		    tx.commit();
-		}
-		catch(Exception ex){
-		      ex.printStackTrace();
-		      System.out.println("Lecture échouée " + ex.getMessage());
-		}
-		finally{
-			sess.close();
-		}
-		return lesEtudiants;
-	}
-	
-	public static void updateEtudiant(int idEtudiant, String prenom, String nom, String login, String mdp) {
-		Session sess = null;
-		try {
-			sess = HibernateUtil.getSessionFactory().openSession();
-			Transaction tx = sess.beginTransaction();
-			Etudiant e = (Etudiant)sess.createQuery(" from Etudiant where idEtudiant=" + idEtudiant).list().get(0);
-			e.setPrenomEtudiant(prenom);
-			e.setNomEtudiant(nom);
-			e.setLogin(login);
-			e.setMdp(mdp);
-			sess.save(e);
-			tx.commit();
-		}
-		catch (Exception ex) {
-			System.out.println("Erreur insertion" + ex.getMessage());
-		}
-		finally {
-			sess.close();
-		}
-	}
-	
-	public static void deleteEtudiant(int idEtudiant) {
-		Session sess = null;
-		try {
-			sess = HibernateUtil.getSessionFactory().openSession();
-			Transaction tx = sess.beginTransaction();
-			sess.delete((Etudiant)sess.createQuery(" from Etudiant where idEtudiant=" + idEtudiant).list().get(0));
-			tx.commit();
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			sess.close();
-		}
-	}
-	 */
 
+	@Override
+	public void createInscription(Etudiant e, CoursSession cs) {
+		Etudiant e1 = new Etudiant("test", "test", "test", "test");
+		Cours c = em.find(Cours.class, 1);
+		CoursSession cs1 = new CoursSession(new Date(), new Date(), "test", c, "test");
+		Set<CoursSession> lesCoursSession = new HashSet<CoursSession>();
+		lesCoursSession.add(cs1);
+		e1.setLesCoursSession(lesCoursSession);
+		em.persist(e1);
+	}
 }

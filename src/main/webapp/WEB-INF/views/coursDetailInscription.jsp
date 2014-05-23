@@ -21,8 +21,9 @@
 									<tr>
 										<td colspan ="3" align="center">
 										<form method="POST" action="InscriptionCours">
-										<input type="submit" value="S'incrire" >
-										<input type="button" onclick="javascript:history.back()" value="Retour" >
+											<input type="hidden" value="${idCoursSession}" name="idCoursSession">
+											<input type="submit" value="S'incrire" >
+											<input type="button" onclick="javascript:history.back()" value="Retour" >
 										</form>
 										</td>
 									</tr>

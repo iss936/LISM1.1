@@ -16,6 +16,7 @@ public class CoursSessionController {
 	@RequestMapping(value="/FicheCoursSessionItem", method = RequestMethod.GET)
 	public String listCoursSession(Model model, @RequestParam(value="idCoursSession") int idCoursSession) {
 		model.addAttribute("coursSessionItemList", coursSessionDao.findAll(idCoursSession));
+		model.addAttribute("idCoursSession", idCoursSession);
 		return "coursDetailInscription";
 	}
 }

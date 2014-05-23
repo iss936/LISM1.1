@@ -1,10 +1,9 @@
 package fr.iut.lism.service.implementation;
 
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import fr.iut.lism.Cours;
 import fr.iut.lism.dao.interfaces.CoursDao;
 import fr.iut.lism.service.interfaces.CoursService;
@@ -12,12 +11,12 @@ import fr.iut.lism.service.interfaces.CoursService;
 @Service
 public class CoursServiceImpl implements CoursService{
 	
+	@Autowired
 	private CoursDao coursDao;
 
 	@Transactional
 	public void createCours(String libelle) {
 		coursDao.createCours(libelle);
-		
 	}
 
 	@Transactional
@@ -27,18 +26,16 @@ public class CoursServiceImpl implements CoursService{
 
 	@Transactional
 	public List<Cours> getLesCours() {
-		return coursDao.findAll();
+		return coursDao.getLesCours();
 	}
 
 	@Transactional
 	public void updateCours(int idCours, String libelle) {
 		coursDao.updateCours(idCours, libelle);
-		
 	}
 
 	@Transactional
 	public void deleteCours(int idCours) {
 		coursDao.deleteCours(idCours);
-		
 	}
 }

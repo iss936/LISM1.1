@@ -1,17 +1,29 @@
 package fr.iut.lism;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="cours_session")
 public class CoursSession {
 
 	@Id
+	@GeneratedValue
+	@Column(name="id_cours_session")
 	private int idCoursSession;
 	
 	@Column(name="date_debut")
@@ -30,14 +42,18 @@ public class CoursSession {
 	@Column(name="type_cours_session")
 	private String typeCoursSession;
 
-//	@OneToMany()
-//	private Set<CoursSessionItem> lesCoursSessionItem;
-//
-//	@OneToMany()
-//	private Set<EvalSession> lesEvalSession;
-//	
-//	@OneToMany()
-//	private Set<InscriptionSession> lesInscriptionSession;
+	@OneToMany(mappedBy="coursSession", cascade=CascadeType.ALL)
+	private Set<CoursSessionItem> lesCoursSessionItem;
+
+	@OneToMany(mappedBy="coursSession", cascade=CascadeType.ALL)
+	private Set<EvalSession> lesEvalSession;
+	
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+			name="inscription_session",
+			joinColumns=@JoinColumn(name="id_cours_session"),
+			inverseJoinColumns=@JoinColumn(name="id_etudiant"))
+	private Set<Etudiant> lesEtudiant = new HashSet<Etudiant>();
 	
 	public CoursSession(int idCoursSession, Date dateDebut, Date dateFin, String description, Cours cours, String typeCoursSession) {
 		this.setIdCoursSession(idCoursSession);
@@ -51,6 +67,8 @@ public class CoursSession {
 	public CoursSession(Date dateDebut, Date dateFin, String description, Cours c, String typeCoursSession) {
 		this.setDateDebut(dateDebut);
 		this.setDateFin(dateFin);
+		this.setDescription(description);
+		this.setCours(c);
 		this.setTypeCoursSession(typeCoursSession);
 	}
 	
@@ -139,47 +157,54 @@ public class CoursSession {
 		this.cours = cours;
 	}
 
-//	/**
-//	 * @return the lesCoursSessionItem
-//	 */
-//	public Set<CoursSessionItem> getLesCoursSessionItem() {
-//		return lesCoursSessionItem;
-//	}
-//
-//	/**
-//	 * @param lesCoursSessionItem the lesCoursSessionItem to set
-//	 */
-//	public void setLesCoursSessionItem(Set<CoursSessionItem> lesCoursSessionItem) {
-//		this.lesCoursSessionItem = lesCoursSessionItem;
-//	}
-//
-//	/**
-//	 * @return the lesEvalSession
-//	 */
-//	public Set<EvalSession> getLesEvalSession() {
-//		return lesEvalSession;
-//	}
-//
-//	/**
-//	 * @param lesEvalSession the lesEvalSession to set
-//	 */
-//	public void setLesEvalSession(Set<EvalSession> lesEvalSession) {
-//		this.lesEvalSession = lesEvalSession;
-//	}
-//
+	/**
+	 * @return the lesEtudiant
+	 */
+	public Set<Etudiant> getLesEtudiant() {
+		return lesEtudiant;
+	}
 
-//	/**
-//	 * @return the lesInscriptionSession
-//	 */
-//	public Set<InscriptionSession> getLesInscriptionSession() {
-//		return lesInscriptionSession;
-//	}
-//
-//	/**
-//	 * @param lesInscriptionSession the lesInscriptionSession to set
-//	 */
-//	public void setLesInscriptionSession(Set<InscriptionSession> lesInscriptionSession) {
-//		this.lesInscriptionSession = lesInscriptionSession;
-//	}
+	/**
+	 * @param lesEtudiant the lesEtudiant to set
+	 */
+	public void setLesEtudiant(Set<Etudiant> lesEtudiant) {
+		this.lesEtudiant = lesEtudiant;
+	}
 
+	/**
+	 * @return the lesCoursSessionItem
+	 */
+	public Set<CoursSessionItem> getLesCoursSessionItem() {
+		return lesCoursSessionItem;
+	}
+
+	/**
+	 * @param lesCoursSessionItem the lesCoursSessionItem to set
+	 */
+	public void setLesCoursSessionItem(Set<CoursSessionItem> lesCoursSessionItem) {
+		this.lesCoursSessionItem = lesCoursSessionItem;
+	}
+
+	/**
+	 * @return the lesEvalSession
+	 */
+	public Set<EvalSession> getLesEvalSession() {
+		return lesEvalSession;
+	}
+
+	/**
+	 * @param lesEvalSession the lesEvalSession to set
+	 */
+	public void setLesEvalSession(Set<EvalSession> lesEvalSession) {
+		this.lesEvalSession = lesEvalSession;
+	}
+
+	public void addEtudiant(Etudiant e) {
+		if(!getLesEtudiant().contains(e)) {
+			getLesEtudiant().add(e);
+		}
+		if(!e.getLesCoursSession().contains(this)) {
+			e.getLesCoursSession().contains(this);
+		}
+	}
 }

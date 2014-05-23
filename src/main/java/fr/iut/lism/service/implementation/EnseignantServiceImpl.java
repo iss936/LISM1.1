@@ -1,11 +1,9 @@
 package fr.iut.lism.service.implementation;
 
 import java.util.List;
-
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import fr.iut.lism.Enseignant;
 import fr.iut.lism.dao.interfaces.EnseignantDao;
 import fr.iut.lism.service.interfaces.EnseignantService;
@@ -13,6 +11,7 @@ import fr.iut.lism.service.interfaces.EnseignantService;
 @Service
 public class EnseignantServiceImpl implements EnseignantService{
 	
+	@Autowired
 	private EnseignantDao enseignantDao;
 
 	@Transactional

@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="cours_session_item")
 public class CoursSessionItem {
 
 	@Id
