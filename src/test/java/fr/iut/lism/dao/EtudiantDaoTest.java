@@ -1,13 +1,19 @@
 package fr.iut.lism.dao;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.annotation.Resource;
+
 import junit.framework.Assert;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+
 import fr.iut.lism.CoursSession;
 import fr.iut.lism.Etudiant;
 import fr.iut.lism.dao.implementation.CoursSessionDaoImpl;
@@ -37,15 +43,42 @@ public class EtudiantDaoTest {
 	public void testCreateEtudiant()
 	{
 		etudiant.createEtudiant("test", "test", "ttest", "ttest");
-		System.out.println(etudiant.getUnEtudiant("ttest", "ttest").getIdEtudiant());
+//		System.out.println(etudiant.getUnEtudiant("ttest", "ttest").getIdEtudiant());
 		Assert.assertNotNull(etudiant.getUnEtudiant("ttest", "ttest"));
 	}
 	
 	@Test
 	public void testCreateInscriptionSession()
 	{
-		Etudiant e = etudiantDao.getUnEtudiant(1);
+		Etudiant e = etudiantDao.getUnEtudiant(2);
 		CoursSession cs = coursSessionDao.getUnCoursSession(1);
+		int taille = e.getLesCoursSession().size();
 		etudiant.createInscription(e, cs);
+		Assert.assertEquals(taille+1, e.getLesCoursSession().size());
 	}
+	
+	@Test
+	public void testGetMesInscriptions()
+	{
+		//prepare
+		int idEtudiant=3;
+		int nbResult=2;
+		
+		//perform
+		Set<CoursSession> list = etudiantDao.getMesInscriptions(idEtudiant);
+		
+		//post-check
+		
+		Assert.assertEquals(nbResult, list.size());
+		
+//	for (CoursSession coursSession : list) {
+//			
+//			System.out.println(coursSession.getDescription());
+//			
+//		}
+		
+	}
+	
+	
+	
 }

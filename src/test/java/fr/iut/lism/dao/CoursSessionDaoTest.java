@@ -22,7 +22,7 @@ public class CoursSessionDaoTest {
 	@Test
 	public void testFindAll() 
 	{
-		Assert.assertEquals(1, coursSessionDao.getLesCoursSession().size());
+		Assert.assertEquals(3, coursSessionDao.getLesCoursSession().size());
 	}
 	
 //	@Test

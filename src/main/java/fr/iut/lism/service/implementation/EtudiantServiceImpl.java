@@ -1,9 +1,12 @@
 package fr.iut.lism.service.implementation;
 
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import fr.iut.lism.CoursSession;
 import fr.iut.lism.Etudiant;
 import fr.iut.lism.dao.interfaces.EtudiantDao;
@@ -17,7 +20,7 @@ public class EtudiantServiceImpl implements EtudiantService{
 	
 	@Transactional
 	public void createEtudiant(String prenom, String nom, String login, String mdp) {
-		etudiantDao.createEtudiant(prenom, nom, login, mdp);
+		 etudiantDao.createEtudiant(prenom, nom, login, mdp);
 	}
 
 	@Transactional
@@ -48,6 +51,13 @@ public class EtudiantServiceImpl implements EtudiantService{
 	@Transactional
 	public void createInscription(Etudiant e, CoursSession cs) {
 		etudiantDao.createInscription(e, cs);
+	}
+	
+	@Transactional
+	public Set<CoursSession> getMesInscriptions(int idEtudiant) {
+		return etudiantDao.getMesInscriptions(idEtudiant);
 		
 	}
+	
+	
 }

@@ -1,10 +1,14 @@
 package fr.iut.lism.dao.implementation;
 
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
+
 import org.springframework.stereotype.Component;
+
 import fr.iut.lism.CoursSession;
 import fr.iut.lism.Etudiant;
 import fr.iut.lism.dao.interfaces.EtudiantDao;
@@ -24,6 +28,7 @@ public class EtudiantDaoImpl implements EtudiantDao{
 		Etudiant e = new Etudiant(prenom, nom, login, mdp);
 		em.persist(e);
 		em.getTransaction().commit();
+		em.close();
 	}
 
 	@Override
@@ -80,4 +85,12 @@ public class EtudiantDaoImpl implements EtudiantDao{
 		em.persist(em.merge(e)); //Insert dans inscription_session
 		em.getTransaction().commit(); //Commit
 	}
+	
+	@Override
+	public Set<CoursSession> getMesInscriptions(int idEtudiant) {
+		em = emf.createEntityManager();
+		Set<CoursSession> cs = em.find(Etudiant.class, idEtudiant).getLesCoursSession();
+		return cs;
+	}
+	
 }

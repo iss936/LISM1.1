@@ -106,8 +106,8 @@
 								</div> -->
 							</div>
 							<div class="groupe_lien_MH">
-								<a class="menu_MH" href="#">Mes cours</a>
-								<div class="groupe_sublien_MH">
+								<a class="menu_MH" href="myCourses">Mes cours</a>
+								<!-- <div class="groupe_sublien_MH">
 									<div class="sublien_MH">
 										<a href="#">Sous-menu 1</a>
 									</div>
@@ -117,7 +117,7 @@
 									<div class="sublien_MH">
 										<a href="#">Sous-menu 3</a>
 									</div>
-									<div class="MH_deroulant_bottom"></div>
+									<div class="MH_deroulant_bottom"></div> -->
 								</div>
 							</div>
 							<div class="groupe_lien_MH">
