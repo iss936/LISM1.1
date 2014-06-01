@@ -8,7 +8,6 @@ import javax.persistence.PersistenceUnit;
 import org.springframework.stereotype.Component;
 import fr.iut.lism.Cours;
 import fr.iut.lism.CoursSession;
-import fr.iut.lism.CoursSessionItem;
 import fr.iut.lism.dao.interfaces.CoursSessionDao;
 
 @Component
@@ -32,6 +31,7 @@ public class CoursSessionDaoImpl implements CoursSessionDao{
 	public CoursSession getUnCoursSession(int idCoursSession) {
 		em = emf.createEntityManager();
 		return em.find(CoursSession.class, idCoursSession);
+//		return (CoursSession) em.createQuery("from CoursSession where idCoursSession = " + idCoursSession).getSingleResult();
 	}
 
 	@Override
@@ -41,19 +41,17 @@ public class CoursSessionDaoImpl implements CoursSessionDao{
 	}
 	
 	@Override
-	public List<CoursSessionItem> findAll(int idCoursSession) {
-		em = emf.createEntityManager();
-		return em.createQuery(" from CoursSessionItem where id_cours_session = " + idCoursSession).getResultList();
-	}
-	
-	@Override
 	public void updateCoursSession(int idCoursSession, Date dateDebut, Date dateFin, String description, Cours c, String typeCoursSession) {
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
 		CoursSession cs = getUnCoursSession(idCoursSession);
 		cs.setDateDebut(dateDebut);
 		cs.setDateFin(dateFin);
 		cs.setDescription(description);
 		cs.setCours(c);
 		cs.setTypeCoursSession(typeCoursSession);
+		em.persist(cs);
+		em.getTransaction().commit();
 	}
 
 	@Override
@@ -65,9 +63,5 @@ public class CoursSessionDaoImpl implements CoursSessionDao{
 			em.remove(cs);
 		}
 		em.getTransaction().commit();
-	}
-	
-	public Cours getCours(int id) {
-		return em.find(Cours.class, id);
 	}
 }

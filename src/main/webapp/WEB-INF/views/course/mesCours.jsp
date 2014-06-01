@@ -4,13 +4,13 @@
 		<div class="titre">Mes Cours</div>
 			<table border="1">
 				<tr>
-					<td> Cours</td>
-					<td> Date de début</td>
-					<td> Date de fin</td>
-					<td> Description</td>
-					<td> type</td>
-					<td>Professeur</td>
-					<td>Présence</td>
+					<th>Cours</th>
+					<th>Date de début</th>
+					<th>Date de fin</th>
+					<th>Description</th>
+					<th>Type</th>
+					<th>Professeur</th>
+					<th>Présence</th>
 				</tr>
 			
 			<c:forEach var="unCour"  items="${myCourses}" >

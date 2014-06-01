@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import fr.iut.lism.Cours;
 import fr.iut.lism.CoursSession;
-import fr.iut.lism.CoursSessionItem;
 
 public interface CoursSessionDao {
 
@@ -13,6 +12,4 @@ public interface CoursSessionDao {
 	List<CoursSession> getLesCoursSession();
 	void updateCoursSession(int idCoursSession, Date dateDebut, Date dateFin, String description, Cours c, String typeCoursSession);
 	void deleteCoursSession(int idCoursSession);
-	Cours getCours(int id);
-	List<CoursSessionItem> findAll(int idCoursSession);
 }

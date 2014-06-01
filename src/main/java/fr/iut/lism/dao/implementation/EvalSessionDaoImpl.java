@@ -1,8 +1,35 @@
 package fr.iut.lism.dao.implementation;
 
-import org.springframework.stereotype.Repository;
+import java.util.Date;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import org.springframework.stereotype.Component;
+import fr.iut.lism.CoursSession;
+import fr.iut.lism.EvalSession;
+import fr.iut.lism.dao.interfaces.EvalSessionDao;
 
-@Repository
-public class EvalSessionDaoImpl {
+@Component
+public class EvalSessionDaoImpl implements EvalSessionDao {
+	
+	@PersistenceUnit
+	private EntityManagerFactory emf;
+	
+	private EntityManager em;
+	
+	@Override
+	public void createEvalSession(Date dateDebut, Date dateFin, CoursSession coursSession) {
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		EvalSession es = new EvalSession(dateDebut, dateFin, coursSession);
+		em.persist(es);
+		em.getTransaction().commit();
+	}
+
+	@Override
+	public EvalSession getUneEvalSession(int idEvalSession) {
+		em = emf.createEntityManager();
+		return em.find(EvalSession.class, idEvalSession);
+	}
 	
 }

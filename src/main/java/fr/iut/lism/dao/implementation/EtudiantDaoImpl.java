@@ -85,12 +85,4 @@ public class EtudiantDaoImpl implements EtudiantDao{
 		em.persist(em.merge(e)); //Insert dans inscription_session
 		em.getTransaction().commit(); //Commit
 	}
-	
-	@Override
-	public Set<CoursSession> getMesInscriptions(int idEtudiant) {
-		em = emf.createEntityManager();
-		Set<CoursSession> cs = em.find(Etudiant.class, idEtudiant).getLesCoursSession();
-		return cs;
-	}
-	
 }

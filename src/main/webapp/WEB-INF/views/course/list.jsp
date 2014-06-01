@@ -1,6 +1,6 @@
 		<jsp:include page="../header.jsp"/>
 		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-		<div class="titre">Les Cours</div>
+		<div class="titre">Les matières</div>
 		<table>
 									
 			<c:forEach var="unCour"  items="${courseList}" >

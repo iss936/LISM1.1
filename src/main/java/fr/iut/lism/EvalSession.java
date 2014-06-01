@@ -1,14 +1,17 @@
 package fr.iut.lism;
 
 import java.util.Date;
-
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="eval_session")
@@ -18,19 +21,28 @@ public class EvalSession {
 	private int idEvalSession;
 	
 	@Column(name="date_debut")
+	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
 	
 	@Column(name="date_fin")
+	@Temporal(TemporalType.DATE)
 	private Date dateFin;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_cours_session")
 	private CoursSession coursSession;
 	
-//	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
-//	
+	@OneToMany(mappedBy = "pk.evalSession", cascade=CascadeType.ALL)
+	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
+	
 	public EvalSession(int idEvalSession, Date dateDebut, Date dateFin, CoursSession coursSession) {
 		this.idEvalSession = idEvalSession;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.coursSession = coursSession;
+	}
+	
+	public EvalSession(Date dateDebut, Date dateFin, CoursSession coursSession) {
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.coursSession = coursSession;
@@ -89,19 +101,17 @@ public class EvalSession {
 		this.coursSession = coursSession;
 	}
 
-//	/**
-//	 * @return the lesEtudiantCoursEval
-//	 */
-//	public Set<EtudiantCoursEval> getLesEtudiantCoursEval() {
-//		return lesEtudiantCoursEval;
-//	}
-//
-//	/**
-//	 * @param lesEtudiantCoursEval the lesEtudiantCoursEval to set
-//	 */
-//	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
-//		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
-//	}
-	
-	
+	/**
+	 * @return the lesEtudiantCoursEval
+	 */
+	public Set<EtudiantCoursEval> getLesEtudiantCoursEval() {
+		return lesEtudiantCoursEval;
+	}
+
+	/**
+	 * @param lesEtudiantCoursEval the lesEtudiantCoursEval to set
+	 */
+	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
+		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
+	}	
 }

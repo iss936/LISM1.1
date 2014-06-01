@@ -2,51 +2,79 @@ package fr.iut.lism;
 
 import java.io.Serializable;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
+
+@Entity
+@Table(name="etudiant_cours_eval")
+@AssociationOverrides({
+	@AssociationOverride(name = "pk.etudiant", 
+		joinColumns = @JoinColumn(name = "id_etudiant")),
+	@AssociationOverride(name = "pk.evalSession", 
+		joinColumns = @JoinColumn(name = "id_eval_session")) })
 public class EtudiantCoursEval implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private Etudiant etudiant;
-	private EvalSession evalSession;
+	
+	@EmbeddedId
+	private EtudiantCoursEvalPk pk;
+	
+	@Column(name="note_eval")
 	private float note;
+	
+	@Column(name="status")
 	private String status;
 	
-	public EtudiantCoursEval(Etudiant etudiant, EvalSession evalSession, float note, String status) {
-		this.etudiant = etudiant;
-		this.evalSession = evalSession;
+	public EtudiantCoursEval(EtudiantCoursEvalPk pk, float note, String status) {
+		this.pk = pk;
 		this.note = note;
 		this.status = status;
+	}
+	
+	public EtudiantCoursEval(EtudiantCoursEvalPk pk) {
+		this.pk = pk;
 	}
 	
 	public EtudiantCoursEval() {
 		
 	}
+
+	/**
+	 * @return the pk
+	 */
+	public EtudiantCoursEvalPk getPk() {
+		return pk;
+	}
+
+	/**
+	 * @param pk the pk to set
+	 */
+	public void setPk(EtudiantCoursEvalPk pk) {
+		this.pk = pk;
+	}
 	
-	/**
-	 * @return the etudiant
-	 */
+	@Transient
 	public Etudiant getEtudiant() {
-		return etudiant;
+		return pk.getEtudiant();
 	}
-
-	/**
-	 * @param etudiant the etudiant to set
-	 */
-	public void setEtudiant(Etudiant etudiant) {
-		this.etudiant = etudiant;
+	
+	public void setEtudiant(Etudiant e) {
+		getPk().setEtudiant(e);
 	}
-
-	/**
-	 * @return the evalSession
-	 */
+	
+	@Transient
 	public EvalSession getEvalSession() {
-		return evalSession;
+		return pk.getEvalSession();
 	}
-
-	/**
-	 * @param evalSession the evalSession to set
-	 */
-	public void setEvalSession(EvalSession evalSession) {
-		this.evalSession = evalSession;
+	
+	public void setEvalSession(EvalSession es) {
+		getPk().setEvalSession(es);
 	}
 
 	/**
@@ -75,70 +103,6 @@ public class EtudiantCoursEval implements Serializable{
 	 */
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((etudiant == null) ? 0 : etudiant.hashCode());
-		result = prime * result
-				+ ((evalSession == null) ? 0 : evalSession.hashCode());
-		result = prime * result + Float.floatToIntBits(note);
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		EtudiantCoursEval other = (EtudiantCoursEval) obj;
-		if (etudiant == null) {
-			if (other.etudiant != null) {
-				return false;
-			}
-		} else {
-			if (!etudiant.equals(other.etudiant)) {
-				return false;
-			}
-		}
-		if (evalSession == null) {
-			if (other.evalSession != null) {
-				return false;
-			}
-		} else {
-			if (!evalSession.equals(other.evalSession)) {
-				return false;
-			}
-		}
-		if (Float.floatToIntBits(note) != Float.floatToIntBits(other.note)) {
-			return false;
-		}
-		if (status == null) {
-			if (other.status != null) {
-				return false;
-			}
-		} else {
-			if (!status.equals(other.status)) {
-				return false;
-			}
-		}
-		return true;
 	}
 }
 

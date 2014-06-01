@@ -2,6 +2,7 @@ package fr.iut.lism;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,7 +37,8 @@ public class Etudiant {
 	@Column(name="mdp")
 	private String mdp;
 
-//	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.etudiant", cascade=CascadeType.ALL)
+	private Set<EtudiantCoursEval> lesEtudiantCoursEval;
 	
 	@ManyToMany(cascade={CascadeType.MERGE,CascadeType.REFRESH}, fetch=FetchType.EAGER)
 	@JoinTable(
@@ -147,26 +150,29 @@ public class Etudiant {
 		this.lesCoursSession = lesCoursSession;
 	}
 
-//	/**
-//	 * @return the lesEtudiantCoursEval
-//	 */
-//	public Set<EtudiantCoursEval> getLesEtudiantCoursEval() {
-//		return lesEtudiantCoursEval;
-//	}
-//
-//	/**
-//	 * @param lesEtudiantCoursEval the lesEtudiantCoursEval to set
-//	 */
-//	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
-//		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
-//	}
+	/**
+	 * @return the lesEtudiantCoursEval
+	 */
+	public Set<EtudiantCoursEval> getLesEtudiantCoursEval() {
+		return lesEtudiantCoursEval;
+	}
+
+	/**
+	 * @param lesEtudiantCoursEval the lesEtudiantCoursEval to set
+	 */
+	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
+		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
+	}
 	
 	public void addCoursSession(CoursSession cs) {
 		if(!getLesCoursSession().contains(cs)) {
 			getLesCoursSession().add(cs);
 		}
-		if(!cs.getLesEtudiant().contains(this)) {
-			cs.getLesEtudiant().add(this);
+	}
+	
+	public void addEtudiantCoursEval(EtudiantCoursEval ece) {
+		if(!getLesEtudiantCoursEval().contains(ece)) {
+			getLesEtudiantCoursEval().add(ece);
 		}
 	}
 }

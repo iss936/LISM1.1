@@ -106,22 +106,37 @@
 								</div> -->
 							</div>
 							<div class="groupe_lien_MH">
-								<a class="menu_MH" href="myCourses">Mes cours</a>
-								<!-- <div class="groupe_sublien_MH">
+								<a class="menu_MH">Cours</a>
+								<div class="groupe_sublien_MH">
 									<div class="sublien_MH">
-										<a href="#">Sous-menu 1</a>
+										<a href="myCourses">Mes cours</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="#">Sous-menu 2</a>
+										<a href="courses">Inscription</a>
 									</div>
 									<div class="sublien_MH">
 										<a href="#">Sous-menu 3</a>
 									</div>
-									<div class="MH_deroulant_bottom"></div> -->
+									<div class="MH_deroulant_bottom"></div>
 								</div>
 							</div>
 							<div class="groupe_lien_MH">
-								<a class="menu_MH" href="#">Mes évaluations</a>
+								<a class="menu_MH" href="#">Evaluations</a>
+								<div class="groupe_sublien_MH">
+									<div class="sublien_MH">
+										<a href="prochainEval" style="font-size: x-small;">Mes prochaines évaluations</a>
+									</div>
+									<div class="sublien_MH">
+										<a href="evalSession">Inscription</a>
+									</div>
+									<div class="sublien_MH">
+										<a href="mesResultats">Mes résultats</a>
+									</div>
+									<div class="MH_deroulant_bottom"></div>
+								</div>
+							</div>
+							<div class="groupe_lien_MH">
+								<a class="menu_MH" href="#">Professeur</a>
 								<div class="groupe_sublien_MH">
 									<div class="sublien_MH">
 										<a href="#">Sous-menu 1</a>
@@ -136,7 +151,7 @@
 								</div>
 							</div>
 							<div class="groupe_lien_MH">
-								<a class="menu_MH" href="#">Menu 4</a>
+								<a class="menu_MH" href="#">Mon compte</a>
 								<div class="groupe_sublien_MH">
 									<div class="sublien_MH">
 										<a href="#">Sous-menu 1</a>

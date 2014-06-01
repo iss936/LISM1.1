@@ -1,7 +1,9 @@
 package fr.iut.lism;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,6 +18,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.OrderBy;
 
 @Entity
 @Table(name="cours_session")
@@ -27,9 +33,11 @@ public class CoursSession {
 	private int idCoursSession;
 	
 	@Column(name="date_debut")
+	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
 	
 	@Column(name="date_fin")
+	@Temporal(TemporalType.DATE)
 	private Date dateFin;
 	
 	@Column(name="description")
@@ -43,10 +51,11 @@ public class CoursSession {
 	private String typeCoursSession;
 
 	@OneToMany(mappedBy="coursSession", cascade=CascadeType.ALL)
-	private Set<CoursSessionItem> lesCoursSessionItem;
+	@OrderBy(clause = "id_cours_session ASC")
+	private List<CoursSessionItem> lesCoursSessionItem = new ArrayList<CoursSessionItem>();
 
 	@OneToMany(mappedBy="coursSession", cascade=CascadeType.ALL)
-	private Set<EvalSession> lesEvalSession;
+	private Set<EvalSession> lesEvalSession = new HashSet<EvalSession>();
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
@@ -174,14 +183,14 @@ public class CoursSession {
 	/**
 	 * @return the lesCoursSessionItem
 	 */
-	public Set<CoursSessionItem> getLesCoursSessionItem() {
+	public List<CoursSessionItem> getLesCoursSessionItem() {
 		return lesCoursSessionItem;
 	}
 
 	/**
 	 * @param lesCoursSessionItem the lesCoursSessionItem to set
 	 */
-	public void setLesCoursSessionItem(Set<CoursSessionItem> lesCoursSessionItem) {
+	public void setLesCoursSessionItem(List<CoursSessionItem> lesCoursSessionItem) {
 		this.lesCoursSessionItem = lesCoursSessionItem;
 	}
 
@@ -197,14 +206,5 @@ public class CoursSession {
 	 */
 	public void setLesEvalSession(Set<EvalSession> lesEvalSession) {
 		this.lesEvalSession = lesEvalSession;
-	}
-
-	public void addEtudiant(Etudiant e) {
-		if(!getLesEtudiant().contains(e)) {
-			getLesEtudiant().add(e);
-		}
-		if(!e.getLesCoursSession().contains(this)) {
-			e.getLesCoursSession().contains(this);
-		}
 	}
 }

@@ -2,15 +2,19 @@ package fr.iut.lism;
 
 import java.io.Serializable;
 
+import javax.persistence.Embeddable;
+import javax.persistence.ManyToOne;
+
+@Embeddable
 public class EtudiantCoursEvalPk implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
-	protected Etudiant etudiant;
-	protected EvalSession evalSession;
+	@ManyToOne
+	private Etudiant etudiant;
+	
+	@ManyToOne
+	private EvalSession evalSession;
 	
 	public EtudiantCoursEvalPk() {
 		
@@ -18,6 +22,34 @@ public class EtudiantCoursEvalPk implements Serializable{
 
 	public EtudiantCoursEvalPk(Etudiant etudiant, EvalSession evalSession) {
 		this.etudiant = etudiant;
+		this.evalSession = evalSession;
+	}
+
+	/**
+	 * @return the etudiant
+	 */
+	public Etudiant getEtudiant() {
+		return etudiant;
+	}
+
+	/**
+	 * @param etudiant the etudiant to set
+	 */
+	public void setEtudiant(Etudiant etudiant) {
+		this.etudiant = etudiant;
+	}
+
+	/**
+	 * @return the evalSession
+	 */
+	public EvalSession getEvalSession() {
+		return evalSession;
+	}
+
+	/**
+	 * @param evalSession the evalSession to set
+	 */
+	public void setEvalSession(EvalSession evalSession) {
 		this.evalSession = evalSession;
 	}
 

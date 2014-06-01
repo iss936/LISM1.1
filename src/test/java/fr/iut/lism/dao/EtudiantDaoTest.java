@@ -1,6 +1,5 @@
 package fr.iut.lism.dao;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -65,7 +64,7 @@ public class EtudiantDaoTest {
 		int nbResult=2;
 		
 		//perform
-		Set<CoursSession> list = etudiantDao.getMesInscriptions(idEtudiant);
+		Set<CoursSession> list = etudiant.getUnEtudiant(idEtudiant).getLesCoursSession();
 		
 		//post-check
 		
