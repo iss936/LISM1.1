@@ -58,4 +58,10 @@ public class EtudiantServiceImpl implements EtudiantService{
 	public void createInscription(Etudiant e, CoursSession cs) {
 		etudiantDao.createInscription(e, cs);
 	}
+	
+	@Override
+	@Transactional
+	public boolean getVerifInscription(int idCoursSession,Etudiant e) {
+		return etudiantDao.getVerifInscription(idCoursSession,e);
+	}
 }

@@ -13,4 +13,5 @@ public interface EtudiantDao {
 	void updateEtudiant(int idEtudiant, String prenom, String nom, String login, String mdp);
 	void deleteEtudiant(int idEtudiant);
 	void createInscription(Etudiant e, CoursSession cs);
+	boolean getVerifInscription(int idCoursSession, Etudiant e);
 }

@@ -21,7 +21,7 @@ import fr.iut.lism.service.interfaces.EtudiantService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext-junit.xml")
-@Transactional
+@Transactional()
 public class EtudiantDaoTest {
 
 	@Resource 
@@ -57,18 +57,18 @@ public class EtudiantDaoTest {
 	}
 	
 	@Test
-	public void testGetMesInscriptions()
+	public void testGetVerifInscription()
 	{
 		//prepare
 		int idEtudiant=3;
-		int nbResult=2;
+		boolean result=true;
 		
 		//perform
-		Set<CoursSession> list = etudiant.getUnEtudiant(idEtudiant).getLesCoursSession();
+		boolean possible = etudiant.getVerifInscription(2, etudiant.getUnEtudiant(idEtudiant));
 		
 		//post-check
 		
-		Assert.assertEquals(nbResult, list.size());
+		Assert.assertEquals(true, possible);
 		
 //	for (CoursSession coursSession : list) {
 //			
@@ -77,6 +77,8 @@ public class EtudiantDaoTest {
 //		}
 		
 	}
+	
+	
 	
 	
 	

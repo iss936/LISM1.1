@@ -1,10 +1,13 @@
 package fr.iut.lism.dao.implementation;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
+
+import junit.framework.Assert;
 
 import org.springframework.stereotype.Component;
 
@@ -84,4 +87,29 @@ public class EtudiantDaoImpl implements EtudiantDao{
 		em.persist(em.merge(e)); //Insert dans inscription_session
 		em.getTransaction().commit(); //Commit
 	}
+	
+	//retourne vrai si l'utilisateur peut s'inscrire à la session
+	@Override
+	public boolean getVerifInscription(int idCoursSession,Etudiant e) 
+	{
+		
+		boolean ok = true;
+		// on récupère les cours session de l'étudiant
+		Set<CoursSession> list = this.getUnEtudiant(e.getIdEtudiant()).getLesCoursSession();
+		
+		if(list.isEmpty()){
+			ok=true;
+		}
+		else // il s'est inscrit à certains cours
+		{
+			for (CoursSession unCoursSession : list) {
+				
+				if(unCoursSession.getIdCoursSession() == idCoursSession)
+					ok = false;
+			}	
+		}
+		
+		return ok;
+	}
+	
 }

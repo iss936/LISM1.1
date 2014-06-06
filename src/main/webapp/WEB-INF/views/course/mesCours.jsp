@@ -9,7 +9,7 @@
 					<th>Date de fin</th>
 					<th>Description</th>
 					<th>Type</th>
-					<th>Professeur</th>
+					<th>Professeurs </th>
 					<th>Présence</th>
 				</tr>
 			
@@ -20,7 +20,7 @@
 					<td>${unCour.dateFin}</td>
 					<td>${unCour.description}</td>
 					<td>${unCour.typeCoursSession}</td>
-					<td>toto</td>
+					<td><a href="FicheCoursSessionItem?idCoursSession=${unCour.idCoursSession}">En savoir plus</a></td>
 					<td>En attente</td>
 					
 				</tr>

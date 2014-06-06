@@ -1,4 +1,5 @@
-						<jsp:include page="header.jsp"/>
+						<%@page import="fr.iut.lism.Etudiant"%>
+<jsp:include page="header.jsp"/>
 						<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 						<div class="titre"> Détails et Inscription pour le cours choisi</div>
 							<div class="marge_interne">
@@ -18,6 +19,8 @@
 											<td><c:out value="${unCoursSessionItem.salle.libelleSalle}"/></td>
 										</tr>
 									</c:forEach>
+									
+									<c:if test="${inscrire == true}">
 									<tr>
 										<td colspan ="3" align="center">
 										<form method="POST" action="InscriptionCours">
@@ -27,6 +30,15 @@
 										</form>
 										</td>
 									</tr>
+									</c:if>
+									<c:if test="${inscrire == false}">
+									<tr>
+										<td colspan ="3" align="center">
+										<a href="myCourses">En savoir plus</a>
+										</td>
+									</tr>
+									</c:if>
+									
 								</table>
 								<br>
 								
