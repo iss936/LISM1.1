@@ -1,7 +1,6 @@
 package fr.iut.lism.dao.implementation;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -1,6 +1,3 @@
-							<!-- Fin de la zone de texte -->
-							
-							</div>
 						</div></div>
 
 						<div id="pied_de_page">

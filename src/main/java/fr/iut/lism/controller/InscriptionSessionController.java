@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.iut.lism.Etudiant;
+import fr.iut.lism.Utilisateur;
 import fr.iut.lism.service.interfaces.CoursSessionService;
 import fr.iut.lism.service.interfaces.EtudiantService;
 
@@ -24,7 +25,8 @@ public class InscriptionSessionController {
 	@RequestMapping(value = "/InscriptionCours", method = RequestMethod.POST)
 	public String inscription(Model model, @RequestParam("idCoursSession") int idCoursSession, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		Etudiant e = (Etudiant) session.getAttribute("etudiant"); //Récupération de l'étudiant dans la session
+		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
+		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
 		etudiantServ.createInscription(e, coursSessionServ.getUnCoursSession(idCoursSession));
 		return "course/list";
 	}

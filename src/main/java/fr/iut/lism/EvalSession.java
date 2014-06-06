@@ -2,6 +2,7 @@ package fr.iut.lism;
 
 import java.util.Date;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -113,5 +114,11 @@ public class EvalSession {
 	 */
 	public void setLesEtudiantCoursEval(Set<EtudiantCoursEval> lesEtudiantCoursEval) {
 		this.lesEtudiantCoursEval = lesEtudiantCoursEval;
-	}	
+	}
+	
+	public void addEtudiantCoursEval(EtudiantCoursEval ece) {
+		if(!getLesEtudiantCoursEval().contains(ece)) {
+			getLesEtudiantCoursEval().add(ece);
+		}
+	}
 }

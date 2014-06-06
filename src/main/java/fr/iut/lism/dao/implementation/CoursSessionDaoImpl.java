@@ -31,7 +31,6 @@ public class CoursSessionDaoImpl implements CoursSessionDao{
 	public CoursSession getUnCoursSession(int idCoursSession) {
 		em = emf.createEntityManager();
 		return em.find(CoursSession.class, idCoursSession);
-//		return (CoursSession) em.createQuery("from CoursSession where idCoursSession = " + idCoursSession).getSingleResult();
 	}
 
 	@Override

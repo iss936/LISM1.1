@@ -98,7 +98,7 @@
 
 								<!-- Début de la zone de texte -->
 								
-		<form method="POST" action="connexion">
+		<form method="post" action="connexion">
 		<label for="login">Login</label><input id="login" name="login" type="text"> <br>
 		<label for="mdp">Mot de passe</label><input id="mdp" name="mdp" type="password"> <br>
 		<label>Validation :</label><input name="ok" type="submit" value="Ok"/>

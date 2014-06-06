@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
 	<head>
 		<title>LISM</title>
@@ -135,21 +137,40 @@
 									<div class="MH_deroulant_bottom"></div>
 								</div>
 							</div>
+							<c:if test="${utilisateur.role == 'enseignant'}">
 							<div class="groupe_lien_MH">
 								<a class="menu_MH" href="#">Professeur</a>
 								<div class="groupe_sublien_MH">
 									<div class="sublien_MH">
-										<a href="#">Sous-menu 1</a>
+										<a href="#">Déposer contenu</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="#">Sous-menu 2</a>
+										<a href="#" style="font-size: x-small;">Ajouter une évaluation</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="#">Sous-menu 3</a>
+										<a href="#">Déposer notes</a>
 									</div>
 									<div class="MH_deroulant_bottom"></div>
 								</div>
 							</div>
+							</c:if>
+							<c:if test="${utilisateur.role == 'administrateur'}">
+							<div class="groupe_lien_MH">
+								<a class="menu_MH" href="#">Admin</a>
+								<div class="groupe_sublien_MH">
+									<div class="sublien_MH">
+										<a href="addEnseignant">Ajouter professeur</a>
+									</div>
+									<div class="sublien_MH">
+										<a href="delEnseignant" style="font-size: x-small;">Supprimer professeur</a>
+									</div>
+									<div class="sublien_MH">
+										<a href="#" style="font-size: x-small;">Ajouter cours à professeur</a>
+									</div>
+									<div class="MH_deroulant_bottom"></div>
+								</div>
+							</div>
+							</c:if>
 							<div class="groupe_lien_MH">
 								<a class="menu_MH" href="#">Mon compte</a>
 								<div class="groupe_sublien_MH">
@@ -160,7 +181,7 @@
 										<a href="#">Sous-menu 2</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="#">Sous-menu 3</a>
+										<a href="deconnexion">Déconnexion</a>
 									</div>
 									<div class="MH_deroulant_bottom"></div>
 								</div>

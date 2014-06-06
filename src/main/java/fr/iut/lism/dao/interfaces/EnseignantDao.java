@@ -6,10 +6,10 @@ import fr.iut.lism.Enseignant;
 
 public interface EnseignantDao {
 
-	public void createEnseignant(String prenom, String nom, String login, String mdp);
-	public Enseignant getUnEnseignant(int idEnseignant);
-	public Enseignant getUnEnseignant(String login, String mdp);
-	public List<Enseignant> getLesEnseignants();
-	public void updateEnseignant(int idEnseignant, String prenom, String nom, String login, String mdp);
-	public void deleteEnseignant(int idEnseignant);
+	void createEnseignant(String prenom, String nom, String login, String mdp);
+	Enseignant getUnEnseignant(int idEnseignant);
+	Enseignant getUnEnseignant(String login, String mdp);
+	List<Enseignant> getLesEnseignants();
+	void updateEnseignant(int idEnseignant, String prenom, String nom, String login, String mdp);
+	void deleteEnseignant(int idEnseignant);
 }

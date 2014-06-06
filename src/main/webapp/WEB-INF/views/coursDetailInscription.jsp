@@ -1,7 +1,7 @@
 						<jsp:include page="header.jsp"/>
 						<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-						<div id="texte"><div id="overflow">
-							<div class="cadre"><div class="titre"> Détails et Inscription pour le cours choisi</div><div class="marge_interne">
+						<div class="titre"> Détails et Inscription pour le cours choisi</div>
+							<div class="marge_interne">
 
 								<!-- Début de la zone de texte -->
 								
@@ -29,4 +29,8 @@
 									</tr>
 								</table>
 								<br>
+								
+								<!-- Fin de la zone de texte -->
+								
+								</div>
 								<jsp:include page="footer.jsp"/>

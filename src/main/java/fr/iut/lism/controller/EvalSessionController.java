@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.iut.lism.CoursSession;
 import fr.iut.lism.Etudiant;
-import fr.iut.lism.EtudiantCoursEval;
-import fr.iut.lism.EtudiantCoursEvalPk;
 import fr.iut.lism.EvalSession;
+import fr.iut.lism.Utilisateur;
 import fr.iut.lism.service.interfaces.EtudiantCoursEvalService;
+import fr.iut.lism.service.interfaces.EtudiantService;
 import fr.iut.lism.service.interfaces.EvalSessionService;
 
 @Controller
@@ -28,15 +28,19 @@ public class EvalSessionController {
 	
 	@Autowired protected EtudiantCoursEvalService etudiantCoursEvalServ;
 	@Autowired protected EvalSessionService evalSessionServ;
+	@Autowired protected EtudiantService etudiantServ;
 	
 	@RequestMapping(value = "/prochainEval", method = RequestMethod.GET)
 	public String prochainEval(Model model, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		Etudiant e = (Etudiant) session.getAttribute("etudiant"); //Récupération de l'étudiant dans la session
+		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
+		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
 		Set<EvalSession> lesEvals = new HashSet<EvalSession>();
-		Iterator<CoursSession> it = e.getLesCoursSession().iterator();
-		while(it.hasNext()) {
-			lesEvals.addAll(it.next().getLesEvalSession());
+		if(e.getLesCoursSession().size() > 0) {
+			Iterator<CoursSession> it = e.getLesCoursSession().iterator();
+			while(it.hasNext()) {
+				lesEvals.addAll(it.next().getLesEvalSession());
+			}
 		}
 		model.addAttribute("evalSessionList", lesEvals);
 		return "listeEvalSession";
@@ -45,7 +49,8 @@ public class EvalSessionController {
 	@RequestMapping(value = "/evalSession", method = RequestMethod.GET)
 	public String evalSession(Model model, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		Etudiant e = (Etudiant) session.getAttribute("etudiant"); //Récupération de l'étudiant dans la session
+		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
+		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
 		Set<EvalSession> lesEvals = new HashSet<EvalSession>();
 		Iterator<CoursSession> it = e.getLesCoursSession().iterator();
 		while(it.hasNext()) {
@@ -58,11 +63,10 @@ public class EvalSessionController {
 	@RequestMapping(value = "/inscriptionEval", method = RequestMethod.GET)
 	public String inscriptionEval(Model model, @RequestParam("idEvalSession") int idEvalSession, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		Etudiant e = (Etudiant) session.getAttribute("etudiant"); //Récupération de l'étudiant dans la session
+		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
+		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
 		EvalSession es = evalSessionServ.getUneEvalSession(idEvalSession);
-		EtudiantCoursEvalPk pk = new EtudiantCoursEvalPk(e, es);
-		EtudiantCoursEval ece = new EtudiantCoursEval(pk);
-		e.addEtudiantCoursEval(ece);
+		etudiantCoursEvalServ.createEtudiantCoursEval(e, es);
 		return "accueil";
 	}
 }
