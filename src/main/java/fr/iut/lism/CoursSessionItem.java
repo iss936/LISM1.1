@@ -1,5 +1,7 @@
 package fr.iut.lism;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="cours_session_item")
@@ -30,19 +34,25 @@ public class CoursSessionItem {
 	@Column(name="description_detail")
 	private String descriptionDetail;
 	
-	public CoursSessionItem(int idCoursSessionItem, Enseignant enseignant, Salle salle, CoursSession coursSession, String descriptionDetail) {
+	@Column(name="date")
+	@Temporal(value=TemporalType.TIMESTAMP)
+	private Date date;
+	
+	public CoursSessionItem(int idCoursSessionItem, Enseignant enseignant, Salle salle, CoursSession coursSession, String descriptionDetail, Date date) {
 		this.idCoursSessionItem =  idCoursSessionItem;
 		this.enseignant = enseignant;
 		this.salle = salle;
 		this.coursSession = coursSession;
 		this.descriptionDetail = descriptionDetail;
+		this.date = date;
 	}
 
-	public CoursSessionItem(Enseignant enseignant, Salle salle, CoursSession coursSession, String descriptionDetail) {
+	public CoursSessionItem(Enseignant enseignant, Salle salle, CoursSession coursSession, String descriptionDetail, Date date) {
 		this.enseignant = enseignant;
 		this.salle = salle;
 		this.coursSession = coursSession;
 		this.descriptionDetail = descriptionDetail;
+		this.date = date;
 	}
 	
 	public CoursSessionItem() {
@@ -111,5 +121,19 @@ public class CoursSessionItem {
 	 */
 	public void setCoursSession(CoursSession coursSession) {
 		this.coursSession = coursSession;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+		return date;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }

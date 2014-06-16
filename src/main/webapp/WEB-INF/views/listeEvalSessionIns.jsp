@@ -1,6 +1,6 @@
 <jsp:include page="header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="titre"> Liste de vos prochaines évaluations</div>
+<div class="titre">Evaluations disponibles</div>
 <div class="marge_interne">
 
 	<!-- Début de la zone de texte -->

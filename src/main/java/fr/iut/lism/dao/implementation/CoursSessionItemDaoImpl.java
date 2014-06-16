@@ -1,5 +1,6 @@
 package fr.iut.lism.dao.implementation;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -23,10 +24,10 @@ public class CoursSessionItemDaoImpl implements CoursSessionItemDao{
 	private EntityManager em;
 	
 	@Override
-	public void createCoursSessionItem(Enseignant e, Salle s, CoursSession c, String descriptionDetail) {
+	public void createCoursSessionItem(Enseignant e, Salle s, CoursSession c, String descriptionDetail, Date date) {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		CoursSessionItem csi = new CoursSessionItem(e, s, c, descriptionDetail);
+		CoursSessionItem csi = new CoursSessionItem(e, s, c, descriptionDetail, date);
 		em.persist(csi);
 		em.getTransaction().commit();
 	}
@@ -44,12 +45,14 @@ public class CoursSessionItemDaoImpl implements CoursSessionItemDao{
 	}
 
 	@Override
-	public void updateCoursSessionItem(int idCoursSessionItem, Enseignant e, Salle s, CoursSession c, String descriptionDetail) {
+	public void updateCoursSessionItem(int idCoursSessionItem, Enseignant e, Salle s, CoursSession c, String descriptionDetail, Date date) {
+		em  = emf.createEntityManager();
 		CoursSessionItem csi = getUnCoursSessionItem(idCoursSessionItem);
 		csi.setEnseignant(e);
 		csi.setSalle(s);
 		csi.setCoursSession(c);
 		csi.setDescriptionDetail(descriptionDetail);
+		csi.setDate(date);
 	}
 
 	@Override

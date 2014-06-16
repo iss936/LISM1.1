@@ -28,6 +28,15 @@ public class InscriptionSessionController {
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
 		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
 		etudiantServ.createInscription(e, coursSessionServ.getUnCoursSession(idCoursSession));
-		return "course/list";
+		return "accueil";
+	}
+	
+	@RequestMapping(value = "/DesinscriptionCours", method = RequestMethod.GET)
+	public String desinscription(Model model, @RequestParam("idCoursSession") int idCoursSession, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
+		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
+		etudiantServ.deleteInscription(e, coursSessionServ.getUnCoursSession(idCoursSession));
+		return "accueil";
 	}
 }

@@ -64,4 +64,10 @@ public class EtudiantServiceImpl implements EtudiantService{
 	public boolean getVerifInscription(int idCoursSession,Etudiant e) {
 		return etudiantDao.getVerifInscription(idCoursSession,e);
 	}
+
+	@Override
+	@Transactional
+	public void deleteInscription(Etudiant e, CoursSession cs) {
+		etudiantDao.deleteInscription(e, cs);
+	}
 }

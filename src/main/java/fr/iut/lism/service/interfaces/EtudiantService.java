@@ -14,4 +14,5 @@ public interface EtudiantService {
 	void deleteEtudiant(int idEtudiant);
 	void createInscription(Etudiant e, CoursSession cs);
 	boolean getVerifInscription(int idCoursSession, Etudiant e);
+	void deleteInscription(Etudiant e, CoursSession cs);
 }

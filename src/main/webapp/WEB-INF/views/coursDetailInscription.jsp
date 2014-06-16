@@ -11,18 +11,20 @@
 										<th>Description</th>
 										<th>Enseignant</th>
 										<th>Salle</th>
+										<th>Date</th>
 									</tr>
 									<c:forEach items="${coursSessionItemList}" var="unCoursSessionItem">
 										<tr>
 											<td><c:out value="${unCoursSessionItem.descriptionDetail}"/></td>
 											<td><c:out value="${unCoursSessionItem.enseignant.prenomEnseignant} ${unCoursSessionItem.enseignant.nomEnseignant}"/></td>
 											<td><c:out value="${unCoursSessionItem.salle.libelleSalle}"/></td>
+											<td><c:out value="${unCoursSessionItem.date}"></c:out>
 										</tr>
 									</c:forEach>
 									
 									<c:if test="${inscrire == true}">
 									<tr>
-										<td colspan ="3" align="center">
+										<td colspan ="4" align="center">
 										<form method="POST" action="InscriptionCours">
 											<input type="hidden" value="${idCoursSession}" name="idCoursSession">
 											<input type="submit" value="S'incrire" >
@@ -33,7 +35,7 @@
 									</c:if>
 									<c:if test="${inscrire == false}">
 									<tr>
-										<td colspan ="3" align="center">
+										<td colspan ="4" align="center">
 										<a href="myCourses">En savoir plus</a>
 										</td>
 									</tr>

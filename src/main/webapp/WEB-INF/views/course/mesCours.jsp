@@ -11,6 +11,7 @@
 					<th>Type</th>
 					<th>Professeurs </th>
 					<th>Présence</th>
+					<th>Se désinscrire ?</th>
 				</tr>
 			
 			<c:forEach var="unCour"  items="${myCourses}" >
@@ -22,6 +23,7 @@
 					<td>${unCour.typeCoursSession}</td>
 					<td><a href="FicheCoursSessionItem?idCoursSession=${unCour.idCoursSession}">En savoir plus</a></td>
 					<td>En attente</td>
+					<td><a onclick="return(confirm('Voulez-vous vous désinscrire ?'));" href="DesinscriptionCours?idCoursSession=${unCour.idCoursSession}">Se désinscrire</a></td>
 					
 				</tr>
 			</c:forEach> 

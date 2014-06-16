@@ -107,6 +107,7 @@
 									<div class="MH_deroulant_bottom"></div>
 								</div> -->
 							</div>
+							<c:if test="${utilisateur.role == 'etudiant'}">
 							<div class="groupe_lien_MH">
 								<a class="menu_MH">Cours</a>
 								<div class="groupe_sublien_MH">
@@ -137,10 +138,14 @@
 									<div class="MH_deroulant_bottom"></div>
 								</div>
 							</div>
+							</c:if>
 							<c:if test="${utilisateur.role == 'enseignant'}">
 							<div class="groupe_lien_MH">
 								<a class="menu_MH" href="#">Professeur</a>
 								<div class="groupe_sublien_MH">
+									<div class="sublien_MH">
+										<a href="#">Ajouter notes</a>
+									</div>
 									<div class="sublien_MH">
 										<a href="#">Déposer contenu</a>
 									</div>
@@ -156,7 +161,7 @@
 							</c:if>
 							<c:if test="${utilisateur.role == 'administrateur'}">
 							<div class="groupe_lien_MH">
-								<a class="menu_MH" href="#">Admin</a>
+								<a class="menu_MH" href="#">Gestion professeur</a>
 								<div class="groupe_sublien_MH">
 									<div class="sublien_MH">
 										<a href="addEnseignant">Ajouter professeur</a>
@@ -167,6 +172,21 @@
 									<div class="sublien_MH">
 										<a href="#" style="font-size: x-small;">Ajouter cours à professeur</a>
 									</div>
+									<div class="MH_deroulant_bottom"></div>
+								</div>
+							</div>
+							<div class="groupe_lien_MH">
+								<a class="menu_MH" href="#">Gestion étudiant</a>
+								<div class="groupe_sublien_MH">
+									<div class="sublien_MH">
+										<a href="addEtudiant">Ajouter étudiant</a>
+									</div>
+									<div class="sublien_MH">
+										<a href="delEtudiant" style="font-size: x-small;">Supprimer étudiant</a>
+									</div>
+									<!-- <div class="sublien_MH">
+										<a href="#" style="font-size: x-small;">Ajouter cours à professeur</a>
+									</div> -->
 									<div class="MH_deroulant_bottom"></div>
 								</div>
 							</div>

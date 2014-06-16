@@ -72,7 +72,7 @@ public class EtudiantDaoImpl implements EtudiantDao{
 	public void deleteEtudiant(int idEtudiant) {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		Etudiant e = getUnEtudiant(idEtudiant);
+		Etudiant e = em.find(Etudiant.class, idEtudiant);
 		if(e != null) {
 			em.remove(e);
 		}
@@ -112,4 +112,13 @@ public class EtudiantDaoImpl implements EtudiantDao{
 		return ok;
 	}
 	
+	@Override
+	public void deleteInscription(Etudiant e, CoursSession cs) {
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Etudiant eEntity = em.find(Etudiant.class, e.getIdEtudiant());
+		CoursSession csEntity = em.find(CoursSession.class, cs.getIdCoursSession());
+		eEntity.getLesCoursSession().remove(csEntity);
+		em.getTransaction().commit();
+	}
 }

@@ -30,22 +30,6 @@ public class EvalSessionController {
 	@Autowired protected EvalSessionService evalSessionServ;
 	@Autowired protected EtudiantService etudiantServ;
 	
-	@RequestMapping(value = "/prochainEval", method = RequestMethod.GET)
-	public String prochainEval(Model model, HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
-		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
-		Set<EvalSession> lesEvals = new HashSet<EvalSession>();
-		if(e.getLesCoursSession().size() > 0) {
-			Iterator<CoursSession> it = e.getLesCoursSession().iterator();
-			while(it.hasNext()) {
-				lesEvals.addAll(it.next().getLesEvalSession());
-			}
-		}
-		model.addAttribute("evalSessionList", lesEvals);
-		return "listeEvalSession";
-	}
-	
 	@RequestMapping(value = "/evalSession", method = RequestMethod.GET)
 	public String evalSession(Model model, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -66,7 +50,7 @@ public class EvalSessionController {
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
 		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
 		EvalSession es = evalSessionServ.getUneEvalSession(idEvalSession);
-		etudiantCoursEvalServ.createEtudiantCoursEval(e, es);
+		etudiantCoursEvalServ.createEtudiantCoursEval(e, es, 0, "Inscrit");
 		return "accueil";
 	}
 }
