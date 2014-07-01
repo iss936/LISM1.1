@@ -38,7 +38,6 @@ public class profilController {
 	
 	@RequestMapping(value = "/setMdp", method = RequestMethod.POST)
 	public String setMdp(Model model, HttpServletRequest request, HttpServletResponse response, @RequestParam(value="oldMdp") String oldMdp, @RequestParam(value="newMdp") String newMdp, @RequestParam(value="newMdpConfirm") String newMdpConfirm) {
-		
 		//on récupere en session l'utilisateur actuel
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
@@ -47,42 +46,28 @@ public class profilController {
 		if(oldMdp == "" || newMdp == "" || newMdpConfirm == "") {
 			
 			return "accueil";
-		} 
-		else {
+		} else {
 			// en fonction du role, on crée l'objet
 			if(u.getRole().equals("etudiant")) {
-				
 				//création de l'objet etudiant
 				Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur());
 				
 				//on verifie la cohérence des variables
-				if((e.getMdp().toString() == oldMdp) && (newMdp == newMdpConfirm) )
-				{
-					e.setMdp(newMdp);
-					etudiantServ.updateEtudiant(e.getIdEtudiant(), e.getPrenomEtudiant(), e.getNomEtudiant(), e.getLogin(), e.getMdp());	
-				}
-				else
-				{
+				if((e.getMdp().equals(oldMdp)) && (newMdp.equals(newMdpConfirm))) {
+					etudiantServ.updateEtudiant(e.getIdEtudiant(), e.getPrenomEtudiant(), e.getNomEtudiant(), e.getLogin(), newMdp);	
+				} else {
 				  return "accueil";
 				}
-				
-			}
-			else{
+			} else {
 				Enseignant p = enseignantServ.getUnEnseignant(u.getIdUtilisateur());
-				if((p.getMdp().toString() == oldMdp) && (newMdp == newMdpConfirm) )
-				{
-					p.setMdp(newMdp);
-					enseignantServ.updateEnseignant(p.getIdEnseignant(), p.getPrenomEnseignant(), p.getNomEnseignant(), p.getLogin(), p.getMdp());
-				}
-				else
-				{
+				if((p.getMdp().equals(oldMdp)) && (newMdp.equals(newMdpConfirm))) {
+					enseignantServ.updateEnseignant(p.getIdEnseignant(), p.getPrenomEnseignant(), p.getNomEnseignant(), p.getLogin(), newMdp);
+				} else {
 					return "accueil";
 				}
-				
 			}
 			return "accueil";
-		}			
-			
+		}
 	}
 	
 	//Permet de changer l'adresse mail de l'utilisateur

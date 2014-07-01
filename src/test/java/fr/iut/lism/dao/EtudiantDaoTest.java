@@ -1,7 +1,5 @@
 package fr.iut.lism.dao;
 
-import java.util.Set;
-
 import javax.annotation.Resource;
 
 import junit.framework.Assert;

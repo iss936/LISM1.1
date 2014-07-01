@@ -19,15 +19,15 @@ import fr.iut.lism.service.interfaces.EtudiantService;
 @Controller
 public class InscriptionSessionController {
 	
-	@Autowired protected EtudiantService etudiantServ;
-	@Autowired protected CoursSessionService coursSessionServ;
+	@Autowired protected EtudiantService etudiantService;
+	@Autowired protected CoursSessionService coursSessionService;
 	
 	@RequestMapping(value = "/InscriptionCours", method = RequestMethod.POST)
 	public String inscription(Model model, @RequestParam("idCoursSession") int idCoursSession, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
-		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
-		etudiantServ.createInscription(e, coursSessionServ.getUnCoursSession(idCoursSession));
+		Etudiant e = etudiantService.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
+		etudiantService.createInscription(e, coursSessionService.getUnCoursSession(idCoursSession));
 		return "accueil";
 	}
 	
@@ -35,8 +35,8 @@ public class InscriptionSessionController {
 	public String desinscription(Model model, @RequestParam("idCoursSession") int idCoursSession, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
-		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
-		etudiantServ.deleteInscription(e, coursSessionServ.getUnCoursSession(idCoursSession));
+		Etudiant e = etudiantService.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
+		etudiantService.deleteInscription(e, coursSessionService.getUnCoursSession(idCoursSession));
 		return "accueil";
 	}
 }

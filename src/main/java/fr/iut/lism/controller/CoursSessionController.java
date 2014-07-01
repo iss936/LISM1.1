@@ -1,6 +1,5 @@
 package fr.iut.lism.controller;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -19,18 +18,18 @@ import fr.iut.lism.service.interfaces.EtudiantService;
 @Controller
 public class CoursSessionController {
 	
-	@Autowired protected CoursSessionService coursSessionServ;
-	@Autowired protected EtudiantService etudiantServ;
+	@Autowired protected CoursSessionService coursSessionService;
+	@Autowired protected EtudiantService etudiantService;
 	
 	@RequestMapping(value="/FicheCoursSessionItem", method = RequestMethod.GET)
 	public String listCoursSession(Model model, HttpServletRequest request, @RequestParam(value="idCoursSession") int idCoursSession) {
-		model.addAttribute("coursSessionItemList", coursSessionServ.getUnCoursSession(idCoursSession).getLesCoursSessionItem());
+		model.addAttribute("coursSessionItemList", coursSessionService.getUnCoursSession(idCoursSession).getLesCoursSessionItem());
 		model.addAttribute("idCoursSession", idCoursSession);
 		//reprend l'utilisateur connecté
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");		
-		Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur());
-		boolean inscrire = etudiantServ.getVerifInscription(idCoursSession, e);
+		Etudiant e = etudiantService.getUnEtudiant(u.getIdUtilisateur());
+		boolean inscrire = etudiantService.getVerifInscription(idCoursSession, e);
 		model.addAttribute("inscrire", inscrire);
 		return "coursDetailInscription";
 	}

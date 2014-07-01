@@ -12,61 +12,53 @@ import fr.iut.lism.dao.interfaces.EtudiantDao;
 import fr.iut.lism.service.interfaces.EtudiantService;
 
 @Service
+@Transactional
 public class EtudiantServiceImpl implements EtudiantService{
 
 	@Autowired
 	private EtudiantDao etudiantDao;
 	
 	@Override
-	@Transactional
 	public void createEtudiant(String prenom, String nom, String login, String mdp) {
 		 etudiantDao.createEtudiant(prenom, nom, login, mdp);
 	}
 
 	@Override
-	@Transactional
 	public Etudiant getUnEtudiant(int idEtudiant) {
 		return etudiantDao.getUnEtudiant(idEtudiant);
 	}
 
 	@Override
-	@Transactional
 	public Etudiant getUnEtudiant(String login, String mdp) {
 		return etudiantDao.getUnEtudiant(login, mdp);
 	}
 
 	@Override
-	@Transactional
 	public List<Etudiant> getLesEtudiants() {
 		return etudiantDao.getLesEtudiants();
 	}
 
 	@Override
-	@Transactional
 	public void updateEtudiant(int idEtudiant, String prenom, String nom, String login, String mdp) {
 		etudiantDao.updateEtudiant(idEtudiant, prenom, nom, login, mdp);
 	}
 
 	@Override
-	@Transactional
 	public void deleteEtudiant(int idEtudiant) {
 		etudiantDao.deleteEtudiant(idEtudiant);
 	}
 
 	@Override
-	@Transactional
 	public void createInscription(Etudiant e, CoursSession cs) {
 		etudiantDao.createInscription(e, cs);
 	}
 	
 	@Override
-	@Transactional
 	public boolean getVerifInscription(int idCoursSession,Etudiant e) {
 		return etudiantDao.getVerifInscription(idCoursSession,e);
 	}
 
 	@Override
-	@Transactional
 	public void deleteInscription(Etudiant e, CoursSession cs) {
 		etudiantDao.deleteInscription(e, cs);
 	}

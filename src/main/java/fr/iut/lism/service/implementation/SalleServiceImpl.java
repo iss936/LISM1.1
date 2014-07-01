@@ -9,32 +9,33 @@ import fr.iut.lism.dao.interfaces.SalleDao;
 import fr.iut.lism.service.interfaces.SalleService;
 
 @Service
+@Transactional
 public class SalleServiceImpl implements SalleService{
 
 	@Autowired
 	private SalleDao salleDao;
 
-	@Transactional
+	@Override
 	public void createSalle(String libelle) {
 		salleDao.createSalle(libelle);
 	}
 
-	@Transactional
+	@Override
 	public Salle getUneSalle(int idSalle) {
 		return salleDao.getUneSalle(idSalle);
 	}
 
-	@Transactional
+	@Override
 	public List<Salle> getLesSalles() {
 		return salleDao.getLesSalles();
 	}
 
-	@Transactional
+	@Override
 	public void updateSalle(int idSalle, String libelleSalle) {
 		salleDao.updateSalle(idSalle, libelleSalle);
 	}
 
-	@Transactional
+	@Override
 	public void deleteSalle(int idSalle) {
 		salleDao.deleteSalle(idSalle);
 	}

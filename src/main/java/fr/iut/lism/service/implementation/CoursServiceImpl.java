@@ -9,32 +9,33 @@ import fr.iut.lism.dao.interfaces.CoursDao;
 import fr.iut.lism.service.interfaces.CoursService;
 
 @Service
+@Transactional
 public class CoursServiceImpl implements CoursService{
 	
 	@Autowired
 	private CoursDao coursDao;
 
-	@Transactional
+	@Override
 	public void createCours(String libelle) {
 		coursDao.createCours(libelle);
 	}
 
-	@Transactional
+	@Override
 	public Cours getUnCours(int idCours) {
 		return coursDao.getUnCours(idCours);
 	}
 
-	@Transactional
+	@Override
 	public List<Cours> getLesCours() {
 		return coursDao.getLesCours();
 	}
 
-	@Transactional
+	@Override
 	public void updateCours(int idCours, String libelle) {
 		coursDao.updateCours(idCours, libelle);
 	}
 
-	@Transactional
+	@Override
 	public void deleteCours(int idCours) {
 		coursDao.deleteCours(idCours);
 	}

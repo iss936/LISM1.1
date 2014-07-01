@@ -54,12 +54,11 @@ public class EnseignantDaoImpl implements EnseignantDao{
 	public void updateEnseignant(int idEnseignant, String prenom, String nom, String login, String mdp) {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		Enseignant e = getUnEnseignant(idEnseignant);
+		Enseignant e = em.find(Enseignant.class, idEnseignant);
 		e.setPrenomEnseignant(prenom);
 		e.setNomEnseignant(nom);
 		e.setLogin(login);
 		e.setMdp(mdp);
-		em.persist(e);
 		em.getTransaction().commit();
 	}
 

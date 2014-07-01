@@ -11,25 +11,23 @@ import fr.iut.lism.dao.interfaces.UtilisateurDao;
 import fr.iut.lism.service.interfaces.UtilisateurService;
 
 @Service
+@Transactional
 public class UtilisateurServiceImpl implements UtilisateurService{
 
 	@Autowired
 	private UtilisateurDao utilisateurDao;
 
 	@Override
-	@Transactional
 	public Utilisateur getUnUtilisateur(int idUtilisateur) {
 		return utilisateurDao.getUnUtilisateur(idUtilisateur);
 	}
 
 	@Override
-	@Transactional
 	public Utilisateur getUnUtilisateur(String login, String mdp) {
 		return utilisateurDao.getUnUtilisateur(login, mdp);
 	}
 
 	@Override
-	@Transactional
 	public List<Utilisateur> getLesUtilisateurs() {
 		return utilisateurDao.getLesUtilisateurs();
 	}

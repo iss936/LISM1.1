@@ -144,16 +144,13 @@
 								<a class="menu_MH" href="#">Professeur</a>
 								<div class="groupe_sublien_MH">
 									<div class="sublien_MH">
-										<a href="#">Ajouter notes</a>
+										<a href="addNotes">Déposer notes</a>
 									</div>
 									<div class="sublien_MH">
 										<a href="#">Déposer contenu</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="#" style="font-size: x-small;">Ajouter une évaluation</a>
-									</div>
-									<div class="sublien_MH">
-										<a href="#">Déposer notes</a>
+										<a href="listAddEval" style="font-size: x-small;">Ajouter une évaluation</a>
 									</div>
 									<div class="MH_deroulant_bottom"></div>
 								</div>

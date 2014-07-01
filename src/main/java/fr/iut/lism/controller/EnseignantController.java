@@ -15,7 +15,7 @@ import fr.iut.lism.service.interfaces.EnseignantService;
 @Controller
 public class EnseignantController {
 	
-	@Autowired protected EnseignantService enseignantServ;
+	@Autowired protected EnseignantService enseignantService;
 	
 	@RequestMapping(value = "/addEnseignant", method = RequestMethod.GET)
 	public String addEnseignant(Model model) {
@@ -30,7 +30,7 @@ public class EnseignantController {
 			if(!mdp.equals(confirm)) {
 				return addEnseignant(model);
 			} else {
-				enseignantServ.createEnseignant(prenom, nom, login, mdp);
+				enseignantService.createEnseignant(prenom, nom, login, mdp);
 				return "accueil";
 			}
 		}
@@ -38,7 +38,7 @@ public class EnseignantController {
 	
 	@RequestMapping(value = "/delEnseignant", method = RequestMethod.GET)
 	public String delEnseignant(Model model) {
-		List<Enseignant> ls = enseignantServ.getLesEnseignants();
+		List<Enseignant> ls = enseignantService.getLesEnseignants();
 		model.addAttribute("enseignantList", ls);
 		return "listeEnseignant";
 	}
@@ -46,7 +46,7 @@ public class EnseignantController {
 	@RequestMapping(value = "/delEnseignant", method = RequestMethod.POST)
 	public String delEnseignant(Model model, @RequestParam(value="idEnseignant") Integer[] idEnseignant) {
 		for(int i = 0; i < idEnseignant.length; i++) {
-			enseignantServ.deleteEnseignant(idEnseignant[i]);
+			enseignantService.deleteEnseignant(idEnseignant[i]);
 		}
 		return "accueil";
 	}

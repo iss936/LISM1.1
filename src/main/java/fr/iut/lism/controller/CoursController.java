@@ -25,7 +25,7 @@ import fr.iut.lism.service.interfaces.EtudiantService;
 public class CoursController {
 	
 	@Autowired protected CoursService coursService;
-	@Autowired protected EtudiantService etudiantServ;
+	@Autowired protected EtudiantService etudiantService;
 	
 	@RequestMapping(value = "/courses", method = RequestMethod.GET)
 	public String list(Model model) {
@@ -47,7 +47,7 @@ public class CoursController {
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
 		if(u.getRole().equals("etudiant")) {
-			Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
+			Etudiant e = etudiantService.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
 			Set<CoursSession> ls = e.getLesCoursSession(); //on sélectionne les coursSessions de l'étudiant
 			model.addAttribute("myCourses", ls);
 		}

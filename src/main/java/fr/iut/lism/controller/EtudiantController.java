@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fr.iut.lism.Enseignant;
 import fr.iut.lism.Etudiant;
 import fr.iut.lism.service.interfaces.EnseignantService;
 import fr.iut.lism.service.interfaces.EtudiantService;
@@ -17,8 +16,8 @@ import fr.iut.lism.service.interfaces.EtudiantService;
 @Controller
 public class EtudiantController {
 	
-	@Autowired protected EnseignantService enseignantServ;
-	@Autowired protected EtudiantService etudiantServ;
+	@Autowired protected EnseignantService enseignantService;
+	@Autowired protected EtudiantService etudiantService;
 	
 	@RequestMapping(value = "/addEtudiant", method = RequestMethod.GET)
 	public String addEtudiant(Model model) {
@@ -33,7 +32,7 @@ public class EtudiantController {
 			if(!mdp.equals(confirm)) {
 				return addEtudiant(model);
 			} else {
-				etudiantServ.createEtudiant(prenom, nom, login, mdp);
+				etudiantService.createEtudiant(prenom, nom, login, mdp);
 				return "accueil";
 			}
 		}
@@ -41,7 +40,7 @@ public class EtudiantController {
 	
 	@RequestMapping(value = "/delEtudiant", method = RequestMethod.GET)
 	public String delEtudiant(Model model) {
-		List<Etudiant> ls = etudiantServ.getLesEtudiants();
+		List<Etudiant> ls = etudiantService.getLesEtudiants();
 		model.addAttribute("etudiantList", ls);
 		return "listeEtudiant";
 	}
@@ -49,7 +48,7 @@ public class EtudiantController {
 	@RequestMapping(value="/delEtudiant", method = RequestMethod.POST)
 	public String delEtudiant(Model model, @RequestParam(value="idEtudiant") Integer[] idEtudiant) {
 		for(int i = 0; i < idEtudiant.length; i++) {
-			etudiantServ.deleteEtudiant(idEtudiant[i]);
+			etudiantService.deleteEtudiant(idEtudiant[i]);
 		}
 		return "accueil";
 	}

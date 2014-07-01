@@ -7,8 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
-import junit.framework.Assert;
-
 import org.springframework.stereotype.Component;
 
 import fr.iut.lism.CoursSession;
@@ -64,7 +62,6 @@ public class EtudiantDaoImpl implements EtudiantDao{
 		e.setNomEtudiant(nom);
 		e.setLogin(login);
 		e.setMdp(mdp);
-		em.persist(e);
 		em.getTransaction().commit();
 	}
 

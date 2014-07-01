@@ -20,10 +20,10 @@ import fr.iut.lism.service.interfaces.UtilisateurService;
 @Controller
 public class LoginController {
 
-	@Autowired protected EtudiantService etudiantServ;
-	@Autowired protected EnseignantService enseignantServ;
-	@Autowired protected CoursService coursServ;
-	@Autowired protected UtilisateurService utilisateurServ;
+	@Autowired protected EtudiantService etudiantService;
+	@Autowired protected EnseignantService enseignantService;
+	@Autowired protected CoursService coursService;
+	@Autowired protected UtilisateurService utilisateurService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -41,8 +41,8 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");
 		if(u == null) {
-			if(utilisateurServ.getUnUtilisateur(login, mdp) != null) {
-				session.setAttribute("utilisateur", utilisateurServ.getUnUtilisateur(login, mdp));
+			if(utilisateurService.getUnUtilisateur(login, mdp) != null) {
+				session.setAttribute("utilisateur", utilisateurService.getUnUtilisateur(login, mdp));
 				return "accueil";
 			} else {
 				return "index";
