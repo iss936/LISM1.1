@@ -198,7 +198,7 @@
 										<a href="#">Sous-menu 1</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="#">Sous-menu 2</a>
+										<a href="monProfil">Mon profil</a>
 									</div>
 									<div class="sublien_MH">
 										<a href="deconnexion">Déconnexion</a>
