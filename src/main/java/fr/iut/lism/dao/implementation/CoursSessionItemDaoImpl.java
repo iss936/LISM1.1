@@ -28,7 +28,8 @@ public class CoursSessionItemDaoImpl implements CoursSessionItemDao{
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		CoursSessionItem csi = new CoursSessionItem(e, s, c, descriptionDetail, date);
-		em.persist(csi);
+		
+		em.persist(em.merge(csi));
 		em.getTransaction().commit();
 	}
 

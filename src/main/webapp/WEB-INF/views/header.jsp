@@ -167,7 +167,7 @@
 										<a href="delEnseignant" style="font-size: x-small;">Supprimer professeur</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="#" style="font-size: x-small;">Ajouter cours à professeur</a>
+										<a href="AddCoursSessionItem" style="font-size: x-small;">Ajouter cours à professeur</a>
 									</div>
 									<div class="MH_deroulant_bottom"></div>
 								</div>

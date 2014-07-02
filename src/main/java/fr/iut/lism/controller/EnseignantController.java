@@ -1,5 +1,8 @@
 package fr.iut.lism.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.iut.lism.CoursSession;
+import fr.iut.lism.CoursSessionItem;
 import fr.iut.lism.Enseignant;
+import fr.iut.lism.Salle;
+import fr.iut.lism.service.interfaces.CoursSessionItemService;
+import fr.iut.lism.service.interfaces.CoursSessionService;
 import fr.iut.lism.service.interfaces.EnseignantService;
+import fr.iut.lism.service.interfaces.SalleService;
 
 @Controller
 public class EnseignantController {
 	
 	@Autowired protected EnseignantService enseignantService;
+	@Autowired protected SalleService salleService;
+	@Autowired protected CoursSessionService coursSessionService;
+	@Autowired protected CoursSessionItemService coursSessionItemService;
 	
 	@RequestMapping(value = "/addEnseignant", method = RequestMethod.GET)
 	public String addEnseignant(Model model) {
@@ -50,5 +62,41 @@ public class EnseignantController {
 		}
 		return "accueil";
 	}
+	
+	@RequestMapping(value = "/AddCoursSessionItem", method = RequestMethod.GET)
+	public String AddCoursSessionItem(Model model) {
+		
+		List<Enseignant> lsE = enseignantService.getLesEnseignants();
+		model.addAttribute("enseignantList", lsE);
+		
+		List<Salle> lsS = salleService.getLesSalles();
+		model.addAttribute("salleList", lsS);
+		
+		List<CoursSession> lsCS = coursSessionService.getLesCoursSession();
+		model.addAttribute("coursSessionList", lsCS);
+
+		return "frmAddCoursSessionItem";
+	}
+	
+	@RequestMapping(value = "/AddCoursSessionItem", method = RequestMethod.POST)
+	public String AddCoursSessionItem(Model model, 
+			@RequestParam(value="choixProf") int choixProf, 
+			@RequestParam(value="choixCoursSession") int choixCoursSession,
+			@RequestParam(value="choixSalle") int choixSalle, 
+			@RequestParam(value="dateString") String dateString, 
+			@RequestParam(value="description") String description) throws ParseException {
+		
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
+		
+		Enseignant p = enseignantService.getUnEnseignant(choixProf);
+		Salle s = salleService.getUneSalle(choixSalle);
+		CoursSession cs = coursSessionService.getUnCoursSession(choixCoursSession);
+		
+		 coursSessionItemService.createCoursSessionItem(p, s, cs, description, date);
+		
+	
+		return "frmAddCoursSessionItem";
+	}
+
 	
 }
