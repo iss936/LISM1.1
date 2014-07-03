@@ -28,7 +28,6 @@ public class CoursSessionItemDaoImpl implements CoursSessionItemDao{
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		CoursSessionItem csi = new CoursSessionItem(e, s, c, descriptionDetail, date);
-		
 		em.persist(em.merge(csi));
 		em.getTransaction().commit();
 	}
@@ -40,7 +39,7 @@ public class CoursSessionItemDaoImpl implements CoursSessionItemDao{
 	}
 
 	@Override
-	public List<CoursSessionItem> getLesCoursSessionsItem() {
+	public List<CoursSessionItem> getLesCoursSessionItem() {
 		em = emf.createEntityManager();
 		return em.createQuery(" from CoursSessionItem").getResultList();
 	}
@@ -48,19 +47,24 @@ public class CoursSessionItemDaoImpl implements CoursSessionItemDao{
 	@Override
 	public void updateCoursSessionItem(int idCoursSessionItem, Enseignant e, Salle s, CoursSession c, String descriptionDetail, Date date) {
 		em  = emf.createEntityManager();
+		em.getTransaction().begin();
 		CoursSessionItem csi = getUnCoursSessionItem(idCoursSessionItem);
 		csi.setEnseignant(e);
 		csi.setSalle(s);
 		csi.setCoursSession(c);
 		csi.setDescriptionDetail(descriptionDetail);
 		csi.setDate(date);
+		em.getTransaction().commit();
 	}
 
 	@Override
 	public void deleteCoursSessionItem(int idCoursSessionItem) {
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
 		CoursSessionItem csi = getUnCoursSessionItem(idCoursSessionItem);
 		if(csi != null) {
 			em.remove(csi);
 		}
+		em.getTransaction().commit();
 	}
 }

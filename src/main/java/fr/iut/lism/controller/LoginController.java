@@ -45,6 +45,7 @@ public class LoginController {
 				session.setAttribute("utilisateur", utilisateurService.getUnUtilisateur(login, mdp));
 				return "accueil";
 			} else {
+				model.addAttribute("erreurs", true);
 				return "index";
 			}
 		} else {

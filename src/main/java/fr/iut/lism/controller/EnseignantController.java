@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.iut.lism.CoursSession;
 import fr.iut.lism.Enseignant;
+import fr.iut.lism.Etudiant;
 import fr.iut.lism.Salle;
+import fr.iut.lism.Utilisateur;
 import fr.iut.lism.service.interfaces.CoursSessionItemService;
 import fr.iut.lism.service.interfaces.CoursSessionService;
 import fr.iut.lism.service.interfaces.EnseignantService;
@@ -86,16 +91,19 @@ public class EnseignantController {
 			@RequestParam(value="description") String description) throws ParseException {
 		
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
-		
 		Enseignant p = enseignantService.getUnEnseignant(choixProf);
 		Salle s = salleService.getUneSalle(choixSalle);
 		CoursSession cs = coursSessionService.getUnCoursSession(choixCoursSession);
-		
 		 coursSessionItemService.createCoursSessionItem(p, s, cs, description, date);
-		
-	
 		return AddCoursSessionItem(model);
 	}
 
-	
+	@RequestMapping(value = "/myPlanning", method = RequestMethod.GET)
+	public String myPlanning(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
+		Enseignant unEnseignant = (Enseignant) enseignantService.getUnEnseignant(u.getIdUtilisateur()); //Récupération de l'enseignant grâce à l'idUtilisateur
+		model.addAttribute("coursSessionItemList", unEnseignant.getLesCoursSessionItem());
+		return "planningEnseignant";
+	}
 }

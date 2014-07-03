@@ -12,7 +12,7 @@ public interface CoursSessionItemDao {
 
 	void createCoursSessionItem(Enseignant e, Salle s, CoursSession c, String descriptionDetail, Date date);
 	CoursSessionItem getUnCoursSessionItem(int idCoursSessionItem);
-	List<CoursSessionItem> getLesCoursSessionsItem();
+	List<CoursSessionItem> getLesCoursSessionItem();
 	void updateCoursSessionItem(int idCoursSessionItem, Enseignant e, Salle s, CoursSession c, String descriptionDetail, Date date);
 	void deleteCoursSessionItem(int idCoursSessionItem);
 }

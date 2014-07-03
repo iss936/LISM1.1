@@ -50,7 +50,6 @@ public class CoursSessionDaoImpl implements CoursSessionDao{
 		cs.setDescription(description);
 		cs.setCours(c);
 		cs.setTypeCoursSession(typeCoursSession);
-		em.persist(cs);
 		em.getTransaction().commit();
 	}
 

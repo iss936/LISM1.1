@@ -1,11 +1,13 @@
 package fr.iut.lism;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -28,7 +30,8 @@ public class Enseignant {
 	private String mdp;
 	
 	@OneToMany(mappedBy="enseignant")
-	private Set<CoursSessionItem> lesCoursSessionItem;
+	@OrderBy(value="date")
+	private List<CoursSessionItem> lesCoursSessionItem;
 
 	public Enseignant(int idEnseignant, String prenomEnseignant, String nomEnseignant, String login, String mdp) {
 		this.idEnseignant = idEnseignant;
@@ -122,14 +125,14 @@ public class Enseignant {
 	/**
 	 * @return the lesCoursSessionItem
 	 */
-	public Set<CoursSessionItem> getLesCoursSessionItem() {
+	public List<CoursSessionItem> getLesCoursSessionItem() {
 		return lesCoursSessionItem;
 	}
 
 	/**
 	 * @param lesCoursSessionItem the lesCoursSessionItem to set
 	 */
-	public void setLesCoursSessionItem(Set<CoursSessionItem> lesCoursSessionItem) {
+	public void setLesCoursSessionItem(List<CoursSessionItem> lesCoursSessionItem) {
 		this.lesCoursSessionItem = lesCoursSessionItem;
 	}
 

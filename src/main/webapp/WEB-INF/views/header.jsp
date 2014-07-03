@@ -150,6 +150,9 @@ $(function() {
 									<div class="sublien_MH">
 										<a href="listAddEval" style="font-size: x-small;">Ajouter une évaluation</a>
 									</div>
+									<div class="sublien_MH">
+										<a href="myPlanning">Mon planning</a>
+									</div>
 									<div class="MH_deroulant_bottom"></div>
 								</div>
 							</div>
