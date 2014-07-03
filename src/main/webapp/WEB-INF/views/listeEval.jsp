@@ -4,7 +4,7 @@
 <div class="marge_interne">
 
 	<!-- Début de la zone de texte -->
-								
+<form action="addNotes">								
 	<table>
 		<tr>
 			<th>Matière</th>
@@ -12,7 +12,7 @@
 			<th>Etudiant</th>
 			<th>Début évaluation</th>
 			<th>Fin évaluation</th>
-			<th>Note</th>
+			<th></th>
 		</tr>
 		<c:forEach var="uneEval"  items="${lesEvalsList}" >
 		<tr>
@@ -21,10 +21,11 @@
 			<td><c:out value="${uneEval.etudiant.prenomEtudiant} ${uneEval.etudiant.nomEtudiant}"/></td>
 			<td><c:out value="${uneEval.evalSession.dateDebut}"/></td>
 			<td><c:out value="${uneEval.evalSession.dateFin}"/></td>
-			<td><input name="note"></td>
+			<td><a href="frmAddNote?idEtudiant=${uneEval.etudiant.idEtudiant}&idEvalSession=${uneEval.evalSession.idEvalSession}">Saisir une note</a></td>
 		</tr>
 		</c:forEach>
 	</table>
+	</form>
 	<br>
 </div>
 <jsp:include page="footer.jsp"/>

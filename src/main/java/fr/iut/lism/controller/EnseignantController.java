@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.iut.lism.CoursSession;
-import fr.iut.lism.CoursSessionItem;
 import fr.iut.lism.Enseignant;
 import fr.iut.lism.Salle;
 import fr.iut.lism.service.interfaces.CoursSessionItemService;
@@ -95,7 +94,7 @@ public class EnseignantController {
 		 coursSessionItemService.createCoursSessionItem(p, s, cs, description, date);
 		
 	
-		return "frmAddCoursSessionItem";
+		return AddCoursSessionItem(model);
 	}
 
 	

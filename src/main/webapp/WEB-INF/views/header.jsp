@@ -12,7 +12,20 @@
 			.groupe_lien_MH{display : inline;margin-left:0px;}
 			.sublien_MH{height : 37px;width : 120px;}
 		</style> <![endif]-->
+		
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+		<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script>
+$(function() {
+    $( "#datepicker" ).datepicker({
+    		showOn: "both",
+			buttonImageOnly: true,
+			showAnim: "slideDown"
+    });
+});
+</script>
 		<!--[if IE 6]>
 			<script type="text/javascript">
 				$(function()
@@ -94,18 +107,6 @@
 						<div id="MH">
 							<div class="groupe_lien_MH">
 								<a class="menu_MH" href="connexion">Accueil</a>
-								<!-- <div class="groupe_sublien_MH">
-									<div class="sublien_MH">
-										<a href="#">Sous-menu 1</a>
-									</div>
-									<div class="sublien_MH">
-										<a href="#">Sous-menu 2</a>
-									</div>
-									<div class="sublien_MH">
-										<a href="#">Sous-menu 3</a>
-									</div>
-									<div class="MH_deroulant_bottom"></div>
-								</div> -->
 							</div>
 							<c:if test="${utilisateur.role == 'etudiant'}">
 							<div class="groupe_lien_MH">
@@ -116,9 +117,6 @@
 									</div>
 									<div class="sublien_MH">
 										<a href="courses">Inscription</a>
-									</div>
-									<div class="sublien_MH">
-										<a href="#">Sous-menu 3</a>
 									</div>
 									<div class="MH_deroulant_bottom"></div>
 								</div>
@@ -144,10 +142,10 @@
 								<a class="menu_MH" href="#">Professeur</a>
 								<div class="groupe_sublien_MH">
 									<div class="sublien_MH">
-										<a href="addNotes">Déposer notes</a>
+										<a href="addNote">Déposer notes</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="#">Déposer contenu</a>
+										<a href="addContenu">Déposer contenu</a>
 									</div>
 									<div class="sublien_MH">
 										<a href="listAddEval" style="font-size: x-small;">Ajouter une évaluation</a>
@@ -191,9 +189,6 @@
 							<div class="groupe_lien_MH">
 								<a class="menu_MH" href="#">Mon compte</a>
 								<div class="groupe_sublien_MH">
-									<div class="sublien_MH">
-										<a href="#">Sous-menu 1</a>
-									</div>
 									<div class="sublien_MH">
 										<a href="monProfil">Mon profil</a>
 									</div>

@@ -44,8 +44,25 @@ public class EtudiantCoursEvalDaoImpl implements EtudiantCoursEvalDao{
 	}
 
 	@Override
+	public EtudiantCoursEval getUnEtudiantCoursEval(Etudiant e, EvalSession es) {
+		em = emf.createEntityManager();
+		return em.find(EtudiantCoursEval.class, new EtudiantCoursEvalPk(e, es));
+	}
+	
+	@Override
 	public List<EtudiantCoursEval> getLesEtudiantCoursEval() {
 		em = emf.createEntityManager();
 		return em.createQuery("from EtudiantCoursEval").getResultList();
+	}
+	
+	@Override
+	public void updateEtudiantCoursEval(Etudiant e, EvalSession es, float note, String status) {
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		EtudiantCoursEvalPk pk = new EtudiantCoursEvalPk(e, es);
+		EtudiantCoursEval ece = em.find(EtudiantCoursEval.class, pk);
+		ece.setNote(note);
+		ece.setStatus(status);
+		em.getTransaction().commit();
 	}
 }

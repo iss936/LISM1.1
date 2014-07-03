@@ -87,30 +87,4 @@ public class EvalSessionController {
 		evalSessionService.createEvalSession(dateD, dateF, cs);
 		return "accueil";
 	}
-	
-	@RequestMapping(value = "/addNotes", method = RequestMethod.GET)
-	public String deposNotes(Model model,  HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
-		Enseignant unEnseignant = enseignantService.getUnEnseignant(u.getIdUtilisateur());
-		Set<EtudiantCoursEval> lesEval = new HashSet<EtudiantCoursEval>();
-		
-		Iterator<CoursSessionItem> it = unEnseignant.getLesCoursSessionItem().iterator();
-		while (it.hasNext()) {
-			CoursSessionItem coursSessionItem = (CoursSessionItem) it.next();
-			Iterator<EvalSession> it2 = coursSessionItem.getCoursSession().getLesEvalSession().iterator();
-			while (it2.hasNext()) {
-				EvalSession evalSession = (EvalSession) it2.next();
-				Iterator<EtudiantCoursEval> it3 = evalSession.getLesEtudiantCoursEval().iterator();
-				while (it3.hasNext()) {
-					EtudiantCoursEval etudiantCoursEval = (EtudiantCoursEval) it3.next();
-					if(etudiantCoursEval.getStatus().equals("Passé")) {
-						lesEval.add(etudiantCoursEval);
-					}
-				}
-			}
-		}
-		model.addAttribute("lesEvalsList", lesEval);
-		return "listeEval";
-	}
 }

@@ -12,7 +12,7 @@
 										<th>Note</th>
 									</tr>
 									<c:forEach var="unEtudiantCoursEval"  items="${etudiantCoursEvalList}" >
-									<c:if test="${unEtudiantCoursEval.status == 'Passé'}">
+									<c:if test="${unEtudiantCoursEval.status == 'Noté'}">
 									<tr>
 										<td><c:out value="${unEtudiantCoursEval.evalSession.coursSession.cours.libelleCours}"/></td>
 										<td><c:out value="${unEtudiantCoursEval.evalSession.coursSession.description}"/></td>

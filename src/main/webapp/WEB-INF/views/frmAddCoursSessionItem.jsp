@@ -32,7 +32,7 @@
 								     </select><br><br>
 									
 									<label for="mdp">Date</label>
-									<input type="text" name="dateString"><br><br>
+									<input type="text" name="dateString" id="datepicker"><br><br>
 									
 									<label for="description">Description</label>
 									<input type="text" name="description"><br><br>

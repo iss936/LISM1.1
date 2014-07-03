@@ -11,4 +11,6 @@ public interface EtudiantCoursEvalDao {
 	void createEtudiantCoursEval(Etudiant e, EvalSession es);
 	void createEtudiantCoursEval(Etudiant e, EvalSession es, float note, String status);
 	List<EtudiantCoursEval> getLesEtudiantCoursEval();
+	void updateEtudiantCoursEval(Etudiant e, EvalSession es, float note, String status);
+	EtudiantCoursEval getUnEtudiantCoursEval(Etudiant e, EvalSession es);
 }

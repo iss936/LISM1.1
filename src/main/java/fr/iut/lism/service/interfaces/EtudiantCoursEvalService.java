@@ -11,4 +11,7 @@ public interface EtudiantCoursEvalService {
 	void createEtudiantCoursEval(Etudiant e, EvalSession es);
 	void createEtudiantCoursEval(Etudiant e, EvalSession es, float note, String status);
 	List<EtudiantCoursEval> getLesEtudiantCoursEval();
+	EtudiantCoursEval getUnEtudiantCoursEval(Etudiant e, EvalSession es);
+	void updateEtudiantCoursEval(Etudiant e, EvalSession es, float note,
+			String status);
 }

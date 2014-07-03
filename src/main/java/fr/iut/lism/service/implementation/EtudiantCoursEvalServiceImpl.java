@@ -29,9 +29,19 @@ public class EtudiantCoursEvalServiceImpl implements EtudiantCoursEvalService{
 			String status) {
 		etudiantCoursEvalDao.createEtudiantCoursEval(e, es, note, status);
 	}
+	
+	@Override
+	public EtudiantCoursEval getUnEtudiantCoursEval(Etudiant e, EvalSession es) {
+		return etudiantCoursEvalDao.getUnEtudiantCoursEval(e, es);
+	}
 
 	@Override
 	public List<EtudiantCoursEval> getLesEtudiantCoursEval() {
 		return etudiantCoursEvalDao.getLesEtudiantCoursEval();
+	}
+	
+	@Override
+	public void updateEtudiantCoursEval(Etudiant e, EvalSession es, float note, String status) {
+		etudiantCoursEvalDao.updateEtudiantCoursEval(e, es, note, status);
 	}
 }

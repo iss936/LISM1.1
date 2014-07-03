@@ -1,5 +1,8 @@
 package fr.iut.lism.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import fr.iut.lism.Enseignant;
 import fr.iut.lism.Etudiant;
@@ -21,7 +25,7 @@ import fr.iut.lism.service.interfaces.EtudiantService;
 
 
 @Controller
-public class profilController {
+public class ProfilController {
 	
 	@Autowired protected EtudiantService etudiantServ;
 	@Autowired protected EnseignantService enseignantServ;
@@ -68,6 +72,36 @@ public class profilController {
 			}
 			return "accueil";
 		}
+	}
+	
+	@RequestMapping(value = "/addContenu", method = RequestMethod.GET)
+	public String frmAddContenu(Model model) {
+		return "frmAddContenu";
+	}
+	
+	@RequestMapping(value = "/addContenu", method = RequestMethod.POST)
+	public String addContenu(Model model, HttpServletRequest request, @RequestParam("contenu") MultipartFile file) {
+		try {
+			HttpSession session = request.getSession();
+			System.out.println("1 " + Etudiant.class.getResource("lism.sql"));
+			System.out.println("2 " + System.getProperty("user.dir"));
+			System.out.println("3 " + new File(".").getAbsolutePath());
+			System.out.println("4 " + Etudiant.class.getName());
+			System.out.println("5 " + session.getServletContext().getContextPath());
+		    System.out.println("6 "+ request.getSession().getServletContext().getRealPath("/"));
+		    System.out.println("7 " + request.getSession().getServletContext().getContextPath());
+		    System.out.println("8 " + request.getSession().getServletContext().getRealPath("/LISM1.1"));
+		    System.out.println("9 " + request.getContextPath());
+		    System.out.println("10 " + System.getProperty("catalina.home"));
+			byte[] bytes = file.getBytes();
+	        BufferedOutputStream stream =
+	                new BufferedOutputStream(new FileOutputStream(new File(File.separatorChar + file.getOriginalFilename())));
+	        stream.write(bytes);
+	        stream.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return "accueil";
 	}
 	
 	//Permet de changer l'adresse mail de l'utilisateur
