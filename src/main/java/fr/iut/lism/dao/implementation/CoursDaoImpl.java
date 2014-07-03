@@ -1,9 +1,12 @@
 package fr.iut.lism.dao.implementation;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Component;
+
 import fr.iut.lism.Cours;
 import fr.iut.lism.CoursSession;
 import fr.iut.lism.dao.interfaces.CoursDao;
@@ -21,13 +24,14 @@ public class CoursDaoImpl implements CoursDao{
 	}
 	
 	@Override
-	public Cours getUnCours(int idCours) {
-		return em.find(Cours.class, idCours);
+	public void createCours(int idCours, String libelle) {
+		Cours c = new Cours(idCours,libelle);
+		em.persist(c);
 	}
 	
 	@Override
-	public Cours getUnCours(String libelle) {
-		return em.find(Cours.class, libelle);
+	public Cours getUnCours(int idCours) {
+		return em.find(Cours.class, idCours);
 	}
 
 	@Override
@@ -53,4 +57,12 @@ public class CoursDaoImpl implements CoursDao{
 			em.remove(c);
 		}
 	}
+
+	@Override
+	public Cours getUnCours(String libelle) {
+		return em.find(Cours.class, libelle);
+		
+	}
+
+	
 }

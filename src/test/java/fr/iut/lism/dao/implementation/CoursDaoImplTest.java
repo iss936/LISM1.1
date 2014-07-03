@@ -13,8 +13,7 @@ public class CoursDaoImplTest {
 	
 	@Before
 	public void init(){
-		 em = EasyMock.createMock(EntityManager.class);
-		 		
+		 em = EasyMock.createMock(EntityManager.class);	
 	}
 	
 	@Test

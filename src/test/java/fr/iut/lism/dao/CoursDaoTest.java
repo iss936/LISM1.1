@@ -41,6 +41,7 @@ public class CoursDaoTest {
 		
 	}
 	
+	// KO probleme avec getUnCours(String libelle)
 	@Test
 	public void deleteCoursTest()
 	{
@@ -56,5 +57,52 @@ public class CoursDaoTest {
 				Assert.assertEquals(nb-1, coursDao.getLesCours().size());
 		
 	}
+	
+	@Test
+	public void updateCoursTest()
+	{
+				//Prepare		
+				Cours c = coursDao.getUnCours(1);
+				c.setLibelleCours("toto");
+				String libelle = c.getLibelleCours();
+				
+				
+				//Perform
+				coursDao.updateCours(c.getIdCours(), c.getLibelleCours());
+						
+				//Post-check
+				Assert.assertEquals(libelle, coursDao.getUnCours(1).getLibelleCours());
+		
+	}
 
+	@Test
+	public void getUnCoursIntTest()
+	{
+				//Prepare		
+					coursDao.createCours(8,"oralB");
+								
+				//Perform
+					Cours c = coursDao.getUnCours(8);		
+						
+				//Post-check
+				Assert.assertEquals(c, coursDao.getUnCours(8));
+		
+	}
+	
+	
+	// KO probleme avec getUnCours(String libelle)
+	
+	@Test
+	public void getUnCoursStringTest()
+	{
+				//Prepare		
+					coursDao.createCours(9,"Sport");
+								
+				//Perform
+					Cours c = coursDao.getUnCours("Sport");		
+						
+				//Post-check
+				Assert.assertEquals(c, coursDao.getUnCours(8));
+		
+	}
 }
