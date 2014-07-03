@@ -13,4 +13,5 @@ public interface CoursDao {
 	List<CoursSession> getLesCoursSession(int idCours);
 	void updateCours(int idCours, String libelle);
 	void deleteCours(int idCours);
+	Cours getUnCours(String libelle);
 }

@@ -24,6 +24,11 @@ public class CoursDaoImpl implements CoursDao{
 	public Cours getUnCours(int idCours) {
 		return em.find(Cours.class, idCours);
 	}
+	
+	@Override
+	public Cours getUnCours(String libelle) {
+		return em.find(Cours.class, libelle);
+	}
 
 	@Override
 	public List<Cours> getLesCours() {
