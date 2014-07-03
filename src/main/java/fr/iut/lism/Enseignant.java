@@ -1,7 +1,6 @@
 package fr.iut.lism;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -11,7 +11,7 @@
 			<th>Cours</th>
 			<th>Date de début</th>
 			<th>Date de fin</th>
-			<th>Inscrpition</th>
+			<th>Inscription</th>
 		</tr>
 		<c:forEach var="unEvalSession"  items="${evalSessionList}" >
 		<tr>

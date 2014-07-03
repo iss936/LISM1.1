@@ -20,10 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.iut.lism.CoursSession;
-import fr.iut.lism.CoursSessionItem;
-import fr.iut.lism.Enseignant;
 import fr.iut.lism.Etudiant;
-import fr.iut.lism.EtudiantCoursEval;
 import fr.iut.lism.EvalSession;
 import fr.iut.lism.Utilisateur;
 import fr.iut.lism.service.interfaces.CoursSessionService;
@@ -56,7 +53,7 @@ public class EvalSessionController {
 	}
 	
 	@RequestMapping(value = "/inscriptionEval", method = RequestMethod.GET)
-	public String inscriptionEval(Model model, @RequestParam("idEvalSession") int idEvalSession, HttpServletRequest request, HttpServletResponse response) {
+	public String inscriptionEval(Model model, @RequestParam("idEvalSession") int idEvalSession, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
 		Etudiant e = etudiantService.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
@@ -82,8 +79,8 @@ public class EvalSessionController {
 	public String addEval(Model model, @RequestParam("dateDebut") String dateDebut, @RequestParam("dateFin") String dateFin, @RequestParam("idCoursSession") int idCoursSession) throws ParseException {
 		CoursSession cs = coursSessionService.getUnCoursSession(idCoursSession);
 		
-		Date dateD = new SimpleDateFormat("yyyy-MM-dd").parse(dateDebut);
-		Date dateF = new SimpleDateFormat("yyyy-MM-dd").parse(dateFin);
+		Date dateD = new SimpleDateFormat("dd/MM/yyyy").parse(dateDebut);
+		Date dateF = new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
 		evalSessionService.createEvalSession(dateD, dateF, cs);
 		return "accueil";
 	}

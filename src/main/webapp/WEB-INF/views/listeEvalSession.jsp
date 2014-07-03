@@ -12,13 +12,13 @@
 			<th>Date de début</th>
 			<th>Date de fin</th>
 		</tr>
-		<c:forEach var="unEvalSession"  items="${evalSessionList}" >
-		<c:if test="${unEvalSession.status == 'Inscrit'}">
+		<c:forEach var="uneEval"  items="${evalList}" >
+		<c:if test="${uneEval.status == 'Inscrit' && uneEval.evalSession.dateFin > date}">
 		<tr>
-			<td><c:out value="${unEvalSession.evalSession.coursSession.cours.libelleCours}"/></td>
-			<td><c:out value="${unEvalSession.evalSession.coursSession.description}"/> </td>
-			<td><c:out value="${unEvalSession.evalSession.dateDebut}"/></td>
-			<td><c:out value="${unEvalSession.evalSession.dateFin}"/></td>
+			<td><c:out value="${uneEval.evalSession.coursSession.cours.libelleCours}"/></td>
+			<td><c:out value="${uneEval.evalSession.coursSession.description}"/> </td>
+			<td><c:out value="${uneEval.evalSession.dateDebut}"/></td>
+			<td><c:out value="${uneEval.evalSession.dateFin}"/></td>
 		</tr>
 		</c:if>
 		</c:forEach>

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.iut.lism.CoursSession;
 import fr.iut.lism.Enseignant;
-import fr.iut.lism.Etudiant;
 import fr.iut.lism.Salle;
 import fr.iut.lism.Utilisateur;
 import fr.iut.lism.service.interfaces.CoursSessionItemService;
