@@ -1,6 +1,6 @@
 			<jsp:include page="header.jsp"/>
 			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-								<div class="titre">Ajouter cours à professeur</div>
+								<div class="titre">Ajouter un cours à un professeur</div>
 								<div class="marge_interne">
 
 								<!-- Début de la zone de texte -->
@@ -31,8 +31,8 @@
 								          </c:forEach>        
 								     </select><br><br>
 									
-									<label for="mdp">Date</label>
-									<input type="text" name="dateString" id="datepicker"><br><br>
+									<label for="date">Date</label>
+									<input type="text" name="date" class="datepicker"><br><br>
 									
 									<label for="description">Description</label>
 									<input type="text" name="description"><br><br>

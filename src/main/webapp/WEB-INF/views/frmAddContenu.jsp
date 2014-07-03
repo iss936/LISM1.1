@@ -1,13 +1,13 @@
 <jsp:include page="header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="titre">Ajouter une évaluation</div>
+<div class="titre">Ajouter du contenu à un cours</div>
 <div class="marge_interne">
 
 	<!-- Début de la zone de texte -->
 								
 	<form action="addContenu" method="post" enctype="multipart/form-data">
 								
-		<label for="dateDebut">Contenu du cours</label>
+		<label for="contenu">Contenu du cours</label>
 		<input type="file" name="contenu"><br><br>
 									
 		<input type="submit" value="Ajouter">

@@ -87,7 +87,7 @@ public class EnseignantController {
 			@RequestParam(value="choixProf") int choixProf, 
 			@RequestParam(value="choixCoursSession") int choixCoursSession,
 			@RequestParam(value="choixSalle") int choixSalle, 
-			@RequestParam(value="dateString") String dateString, 
+			@RequestParam(value="date") String dateString, 
 			@RequestParam(value="description") String description) throws ParseException {
 		
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
