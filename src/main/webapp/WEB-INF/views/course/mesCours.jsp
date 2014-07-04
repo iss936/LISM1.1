@@ -14,18 +14,18 @@
 					<th>Se désinscrire ?</th>
 				</tr>
 			
-			<c:forEach var="unCour"  items="${myCourses}" >
+			<c:forEach var="unCours"  items="${myCourses}" >
 				<tr>
-					<td>${unCour.cours.libelleCours}</td>
-					<td>${unCour.dateDebut}</td>
-					<td>${unCour.dateFin}</td>
-					<td>${unCour.description}</td>
-					<td>${unCour.typeCoursSession}</td>
-					<td><a href="FicheCoursSessionItem?idCoursSession=${unCour.idCoursSession}">En savoir plus</a></td>
+					<td>${unCours.cours.libelleCours}</td>
+					<td>${unCours.dateDebut}</td>
+					<td>${unCours.dateFin}</td>
+					<td>${unCours.description}</td>
+					<td>${unCours.typeCoursSession}</td>
+					<td><a href="FicheCoursSessionItem?idCoursSession=${unCours.idCoursSession}">En savoir plus</a></td>
 					<td>En attente</td>
-					<td><a onclick="return(confirm('Voulez-vous vous désinscrire ?'));" href="DesinscriptionCours?idCoursSession=${unCour.idCoursSession}">Se désinscrire</a></td>
-					
+					<td><a onclick="return(confirm('Voulez-vous vous désinscrire ?'));" href="DesinscriptionCours?idCoursSession=${unCours.idCoursSession}">Se désinscrire</a></td>
 				</tr>
 			</c:forEach> 
-			</table>			
+			</table>
+			<c:if test="${estDesinscrit}"><span class='error'>Désinscription validée !</span></c:if>		
 		<jsp:include page="../footer.jsp"/>

@@ -1,19 +1,11 @@
 package fr.iut.lism.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.Principal;
-import java.util.Enumeration;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Locale;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -49,14 +41,9 @@ public class EtudiantCoursEvalController {
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
 		Etudiant e = etudiantService.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
-//		Set<EvalSession> lesEvals = new HashSet<EvalSession>();
-//		if(e.getLesCoursSession().size() > 0) {
-//			Iterator<CoursSession> it = e.getLesCoursSession().iterator();
-//			while(it.hasNext()) {
-//				lesEvals.addAll(it.next().getLesEvalSession());
-//			}
-//		}
-		model.addAttribute("evalSessionList", e.getLesEtudiantCoursEval());
+		List<EtudiantCoursEval> lesEvals = etudiantCoursEvalService.getLesEtudiantCoursEval();
+		model.addAttribute("evalList", lesEvals);
+		model.addAttribute("date", new Date());
 		return "listeEvalSession";
 	}
 	
