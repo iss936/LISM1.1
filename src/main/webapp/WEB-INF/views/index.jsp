@@ -99,9 +99,9 @@
 								<!-- Début de la zone de texte -->
 								
 		<form method="post" action="connexion">
-		<label for="login">Login</label><input id="login" name="login" type="text"> <br>
-		<label for="mdp">Mot de passe</label><input id="mdp" name="mdp" type="password"> <br>
-		<label>Validation :</label><input name="ok" type="submit" value="Ok"/>
+		<label for="login">Login</label><input id="login" required="required" name="login" type="text"> <br><br>
+		<label for="mdp">Mot de passe</label><input id="mdp" required="required" name="mdp" type="password"> <br><br>
+		<label>Validation :</label><input name="ok" type="submit" value="Ok"/><br><br>
 	
 		<c:if test="${erreurs}">
 			<br>

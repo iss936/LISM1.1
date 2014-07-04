@@ -8,9 +8,9 @@
 	<form action="addContenu" method="post" enctype="multipart/form-data">
 								
 		<label for="contenu">Contenu du cours</label>
-		<input type="file" name="contenu"><br><br>
+		<input type="file" required="required" name="contenu"><br><br>
 									
-		<input type="submit" value="Ajouter">
+		<input type="submit" value="Ajouter"><br><br>
 								
 	</form>
 </div>

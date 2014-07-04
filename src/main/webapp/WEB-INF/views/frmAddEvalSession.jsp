@@ -8,14 +8,14 @@
 								<form action="addEval" method="post">
 								
 									<label for="dateDebut">Date de début: </label>
-									<input type="text" name="dateDebut" class="datepicker"><br><br>
+									<input type="text" required="required" name="dateDebut" class="datepicker"><br><br>
 									
 									<label for="dateFin">Date de fin: </label>
-									<input type="text" name="dateFin" class="datepicker"><br><br>
+									<input type="text" required="required" name="dateFin" class="datepicker"><br><br>
 									
 									<input type="hidden" value="${idCoursSession}" name="idCoursSession">
 									
-									<input type="submit" value="Ajouter">
+									<input type="submit" value="Ajouter"><br><br>
 								
 								</form>
 								</div>

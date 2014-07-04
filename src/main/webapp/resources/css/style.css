@@ -95,7 +95,7 @@ html
 
 .marge_interne
 {
-	padding : 10px 10px 0px 10px;
+	padding : 10px 10px 10px 10px;
 }
 
 p
@@ -350,4 +350,8 @@ padding-bot: 10px;
 td, th {
 border: thin solid #6495ed;
 width: auto;
+}
+
+.cr{
+	font-size:11px
 }
