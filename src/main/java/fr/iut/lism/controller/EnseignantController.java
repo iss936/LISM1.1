@@ -46,7 +46,7 @@ public class EnseignantController {
 				return addEnseignant(model);
 			} else {
 				enseignantService.createEnseignant(prenom, nom, login, mdp);
-				return "accueil";
+				return delEnseignant(model);
 			}
 		}
 	}
@@ -63,7 +63,7 @@ public class EnseignantController {
 		for(int i = 0; i < idEnseignant.length; i++) {
 			enseignantService.deleteEnseignant(idEnseignant[i]);
 		}
-		return "accueil";
+		return delEnseignant(model);
 	}
 	
 	@RequestMapping(value = "/AddCoursSessionItem", method = RequestMethod.GET)

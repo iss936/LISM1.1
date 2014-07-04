@@ -31,7 +31,7 @@ public class InscriptionSessionController {
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
 		Etudiant e = etudiantService.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
 		etudiantService.createInscription(e, coursSessionService.getUnCoursSession(idCoursSession));
-		return "accueil";
+		return myCourses(model, request);
 	}
 	
 	@RequestMapping(value = "/DesinscriptionCours", method = RequestMethod.GET)

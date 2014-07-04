@@ -1,9 +1,5 @@
 package fr.iut.lism.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import fr.iut.lism.Enseignant;
 import fr.iut.lism.Etudiant;
@@ -77,56 +72,5 @@ public class ProfilController {
 	public String frmAddContenu(Model model) {
 		return "frmAddContenu";
 	}
-	
-	@RequestMapping(value = "/addContenu", method = RequestMethod.POST)
-	public String addContenu(Model model, HttpServletRequest request, @RequestParam("contenu") MultipartFile file) {
-		try {
-			HttpSession session = request.getSession();
-			System.out.println("1 " + Etudiant.class.getResource("lism.sql"));
-			System.out.println("2 " + System.getProperty("user.dir"));
-			System.out.println("3 " + new File(".").getAbsolutePath());
-			System.out.println("4 " + Etudiant.class.getName());
-			System.out.println("5 " + session.getServletContext().getContextPath());
-		    System.out.println("6 "+ request.getSession().getServletContext().getRealPath("/"));
-		    System.out.println("7 " + request.getSession().getServletContext().getContextPath());
-		    System.out.println("8 " + request.getSession().getServletContext().getRealPath("/LISM1.1"));
-		    System.out.println("9 " + request.getContextPath());
-		    System.out.println("10 " + System.getProperty("catalina.home"));
-			byte[] bytes = file.getBytes();
-	        BufferedOutputStream stream =
-	                new BufferedOutputStream(new FileOutputStream(new File(File.separatorChar + file.getOriginalFilename())));
-	        stream.write(bytes);
-	        stream.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return "accueil";
-	}
-	
-	//Permet de changer l'adresse mail de l'utilisateur
-	
-	/*
-	@RequestMapping(value = "/setMail", method = RequestMethod.POST)
-	public String setMail(Model model, HttpServletRequest request, HttpServletResponse response, @RequestParam(value="newMail") String newMail) {
-		
-		HttpSession session = request.getSession();
-		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
-		
-		if(u.getRole().equals("etudiant")) {
-			
-			Etudiant e = etudiantServ.getUnEtudiant(u.getIdUtilisateur());
-			e.setMail(newMail);
-		}
-		else{
-			
-			Enseignant p = enseignantServ.getUnEnseignant(u.getIdUtilisateur());
-			p.setMail(newMail);
-		}
-		
-		
-		return "";
-	}
-	
-	*/
 }
 

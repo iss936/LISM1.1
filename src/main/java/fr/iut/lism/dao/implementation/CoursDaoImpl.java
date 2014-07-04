@@ -3,7 +3,8 @@ package fr.iut.lism.dao.implementation;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 
 import org.springframework.stereotype.Component;
 
@@ -14,28 +15,38 @@ import fr.iut.lism.dao.interfaces.CoursDao;
 @Component
 public class CoursDaoImpl implements CoursDao{
 	
-	@PersistenceContext
+	@PersistenceUnit
+	private EntityManagerFactory emf;
+	
 	private EntityManager em;
 	
 	@Override
 	public void createCours(String libelle) {
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
 		Cours c = new Cours(libelle);
 		em.persist(c);
+		em.getTransaction().commit();
 	}
 	
 	@Override
 	public void createCours(int idCours, String libelle) {
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
 		Cours c = new Cours(idCours,libelle);
 		em.persist(c);
+		em.getTransaction().commit();
 	}
 	
 	@Override
 	public Cours getUnCours(int idCours) {
+		em = emf.createEntityManager();
 		return em.find(Cours.class, idCours);
 	}
 
 	@Override
 	public List<Cours> getLesCours() {
+		em = emf.createEntityManager();
 		return em.createQuery(" from Cours").getResultList();
 	}
 	
@@ -46,8 +57,11 @@ public class CoursDaoImpl implements CoursDao{
 	
 	@Override
 	public void updateCours(int idCours, String libelle) {
-		Cours c = getUnCours(idCours);
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Cours c = em.find(Cours.class, idCours);
 		c.setLibelleCours(libelle);
+		em.getTransaction().commit();
 	}
 	
 	@Override
@@ -60,9 +74,7 @@ public class CoursDaoImpl implements CoursDao{
 
 	@Override
 	public Cours getUnCours(String libelle) {
+		em = emf.createEntityManager();
 		return em.find(Cours.class, libelle);
-		
 	}
-
-	
 }

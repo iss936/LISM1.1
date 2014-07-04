@@ -40,7 +40,6 @@ public class EtudiantCoursEvalController {
 	public String prochainEval(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur"); //Récupération de l'utilisateur dans la session
-		Etudiant e = etudiantService.getUnEtudiant(u.getIdUtilisateur()); //Récupération de l'étudiant grâce à l'idUtilisateur
 		List<EtudiantCoursEval> lesEvals = etudiantCoursEvalService.getLesEtudiantCoursEval();
 		model.addAttribute("evalList", lesEvals);
 		model.addAttribute("date", new Date());

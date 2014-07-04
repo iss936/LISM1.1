@@ -32,4 +32,15 @@ public class CoursController {
 		model.addAttribute("cours", coursService.getUnCours(idCours));
 		return "listeCours";
 	}
+	
+	@RequestMapping(value = "/addCours", method = RequestMethod.GET)
+	public String addCours(Model model) {
+		return "frmAddCours";
+	}
+	
+	@RequestMapping(value = "/addCours", method = RequestMethod.POST)
+	public String addCours(Model model, @RequestParam("libelle") String libelle) {
+		coursService.createCours(libelle);
+		return addCours(model);
+	}
 }

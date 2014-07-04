@@ -13,14 +13,15 @@
 									<label for="nom">Nom</label>
 									<input type="text" required="required" name="nom" value="${uneEval.etudiant.nomEtudiant}" disabled="disabled"><br><br>
 									
-									<label for="note">Note</label>
+									<label for="note">Note *</label>
 									<input type="text" required="required" name="note">
 									
 									<input name="idEtudiant" value="${uneEval.etudiant.idEtudiant}" type="hidden">
 									<input name="idEvalSession" value="${uneEval.evalSession.idEvalSession}" type="hidden">
 									
-									<input type="submit" value="Enregistrer">
+									<input type="submit" value="Enregistrer"><br><br>
 								
 								</form>
+								<div class="cr">* Champs requis</div>
 								</div>
 			<jsp:include page="footer.jsp"/>

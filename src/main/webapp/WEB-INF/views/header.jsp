@@ -156,7 +156,7 @@ $(function() {
 										<a href="addNote">Déposer notes</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="addContenu">Déposer contenu</a>
+										<a href="addContenu">Déposer du contenu</a>
 									</div>
 									<div class="sublien_MH">
 										<a href="listAddEval" style="font-size: x-small;">Ajouter une évaluation</a>
@@ -170,16 +170,28 @@ $(function() {
 							</c:if>
 							<c:if test="${utilisateur.role == 'administrateur'}">
 							<div class="groupe_lien_MH">
+								<a class="menu_MH" href="#">Gestion cours</a>
+								<div class="groupe_sublien_MH">
+									<div class="sublien_MH">
+										<a href="addCours">Ajouter une matière</a>
+									</div>
+									<div class="sublien_MH">
+										<a href="addCoursSession">Ajouter un cours</a>
+									</div>
+									<div class="MH_deroulant_bottom"></div>
+								</div>
+							</div>
+							<div class="groupe_lien_MH">
 								<a class="menu_MH" href="#">Gestion professeur</a>
 								<div class="groupe_sublien_MH">
 									<div class="sublien_MH">
-										<a href="addEnseignant">Ajouter professeur</a>
+										<a href="addEnseignant">Ajouter un professeur</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="delEnseignant" style="font-size: x-small;">Supprimer professeur</a>
+										<a href="delEnseignant" style="font-size: x-small;">Supprimer un professeur</a>
 									</div>
 									<div class="sublien_MH">
-										<a href="AddCoursSessionItem" style="font-size: x-small;">Ajouter cours à professeur</a>
+										<a href="AddCoursSessionItem" style="font-size: x-small;">Ajouter un cours à professeur</a>
 									</div>
 									<div class="MH_deroulant_bottom"></div>
 								</div>

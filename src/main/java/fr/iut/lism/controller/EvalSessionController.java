@@ -82,6 +82,6 @@ public class EvalSessionController {
 		Date dateD = new SimpleDateFormat("dd/MM/yyyy").parse(dateDebut);
 		Date dateF = new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
 		evalSessionService.createEvalSession(dateD, dateF, cs);
-		return "accueil";
+		return listAddEval(model);
 	}
 }
