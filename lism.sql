@@ -162,7 +162,6 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 
 INSERT INTO `etudiant` (`id_etudiant`, `prenom_etudiant`, `nom_etudiant`, `login`, `mdp`, `role`) VALUES
 (1, 'Lionel', 'Lienafa', 'llienafa', 'llienafa', 'etudiant'),
-(2, 'Mostafa', 'BIAICH', 'admin', 'admin', 'etudiant'),
 (3, 'Soumare', 'Issa', 'issa', 'issa', 'etudiant'),
 (4, 'test', 'Test', 'ttest', 'ttest', 'etudiant');
 
